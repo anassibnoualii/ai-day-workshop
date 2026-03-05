@@ -48,6 +48,7 @@ export interface GlobalDoc {
 export interface Config {
   id: string
   feedback_url: string
+  feedback_enabled: boolean
   global_docs: GlobalDoc[]
 }
 

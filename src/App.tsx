@@ -7,6 +7,7 @@ import LivePage from './pages/LivePage'
 import AdminPage from './pages/AdminPage'
 import RulesPage from './pages/RulesPage'
 import FeedbackRedirect from './pages/FeedbackRedirect'
+import ScoreboardPage from './pages/ScoreboardPage'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
               <Route path="/live" element={<LivePage />} />
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/rules" element={<RulesPage />} />
+              <Route path="/scoreboard" element={<ScoreboardPage />} />
               <Route path="/feedback" element={<FeedbackRedirect />} />
             </Routes>
           </main>

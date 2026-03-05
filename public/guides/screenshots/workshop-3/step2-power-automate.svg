@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#ffffff"/>
+  <rect width="800" height="48" fill="#0066FF"/>
+  <text x="20" y="30" font-family="Segoe UI, Arial" font-size="14" fill="white" font-weight="600">Power Automate - New Flow</text>
+  <text x="400" y="85" font-family="Segoe UI, Arial" font-size="14" fill="#333" font-weight="600" text-anchor="middle">Contoso Order Cancellation Flow</text>
+  <rect x="300" y="110" width="200" height="56" rx="8" fill="#742774"/>
+  <text x="400" y="133" font-family="Segoe UI, Arial" font-size="11" fill="white" text-anchor="middle">When Copilot Studio</text>
+  <text x="400" y="150" font-family="Segoe UI, Arial" font-size="11" fill="white" text-anchor="middle">calls a flow</text>
+  <line x1="400" y1="166" x2="400" y2="190" stroke="#999" stroke-width="2"/>
+  <circle cx="400" cy="186" r="3" fill="#999"/>
+  <rect x="300" y="190" width="200" height="56" rx="8" fill="#036C70"/>
+  <text x="400" y="213" font-family="Segoe UI, Arial" font-size="11" fill="white" text-anchor="middle">Get item</text>
+  <text x="400" y="230" font-family="Segoe UI, Arial" font-size="10" fill="white/80" text-anchor="middle">SharePoint</text>
+  <line x1="400" y1="246" x2="400" y2="270" stroke="#999" stroke-width="2"/>
+  <circle cx="400" cy="266" r="3" fill="#999"/>
+  <rect x="300" y="270" width="200" height="56" rx="8" fill="#036C70"/>
+  <text x="400" y="293" font-family="Segoe UI, Arial" font-size="11" fill="white" text-anchor="middle">Update item</text>
+  <text x="400" y="310" font-family="Segoe UI, Arial" font-size="10" fill="white/80" text-anchor="middle">SharePoint - Status: Cancelled</text>
+  <line x1="400" y1="326" x2="400" y2="350" stroke="#999" stroke-width="2"/>
+  <circle cx="400" cy="346" r="3" fill="#999"/>
+  <rect x="300" y="350" width="200" height="56" rx="8" fill="#0078D4"/>
+  <text x="400" y="373" font-family="Segoe UI, Arial" font-size="11" fill="white" text-anchor="middle">Send an email</text>
+  <text x="400" y="390" font-family="Segoe UI, Arial" font-size="10" fill="white/80" text-anchor="middle">Outlook - Confirmation</text>
+  <line x1="400" y1="406" x2="400" y2="430" stroke="#999" stroke-width="2"/>
+  <circle cx="400" cy="426" r="3" fill="#999"/>
+  <rect x="300" y="430" width="200" height="56" rx="8" fill="#742774"/>
+  <text x="400" y="453" font-family="Segoe UI, Arial" font-size="11" fill="white" text-anchor="middle">Return value(s)</text>
+  <text x="400" y="470" font-family="Segoe UI, Arial" font-size="10" fill="white/80" text-anchor="middle">to Copilot Studio</text>
+</svg>

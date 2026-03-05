@@ -77,6 +77,7 @@
     "points": "pts",
     "yourTeam": "Votre equipe",
     "addTeam": "Ajouter equipe",
+    "addPoints": "Ajouter",
     "removeTeam": "Supprimer"
   },
   "card": {
@@ -84,11 +85,13 @@
     "new": "Nouvelle carte !",
     "myCard": "Ma Carte Defi",
     "reveal": "Reveler",
-    "allCards": "Toutes les cartes"
+    "allCards": "Toutes les cartes",
+    "revealed": "Carte revelee avec succes !"
   },
   "feedback": {
     "cta": "Donnez-nous votre avis",
-    "open": "Ouvrir le formulaire"
+    "open": "Ouvrir le formulaire",
+    "disabledHint": "Le formulaire est masque pour les participants. Activez pour l'afficher."
   },
   "admin": {
     "login": "Connexion Admin",
@@ -152,6 +155,9 @@
     "progress": "Progression de la journee",
     "resources": "Ressources",
     "workshopDoc": "Document de l'atelier",
-    "selectTeam": "Selectionnez votre equipe"
+    "selectTeam": "Selectionnez votre equipe",
+    "workshopGuide": "Guide de l'atelier",
+    "guideTitle": "Ouvrir le guide pas a pas de l'atelier",
+    "loading": "Chargement..."
   }
 }

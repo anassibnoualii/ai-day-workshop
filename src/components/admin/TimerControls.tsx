@@ -69,21 +69,21 @@ export default function TimerControls({ eventState }: Props) {
 
   return (
     <Card className="flex flex-col items-center">
-      <h3 className="font-bold text-dark-slate mb-4 self-start">Timer</h3>
-      <div className={`font-mono text-5xl font-bold tabular-nums mb-4 ${isLow ? 'text-card-red' : isRunning ? 'text-sushi' : 'text-prussian'}`}>
+      <h3 className="font-display font-bold text-prussian mb-6 self-start">Timer</h3>
+      <div className={`font-mono text-6xl font-bold tabular-nums mb-6 transition-all duration-500 ${isLow ? 'text-card-red' : isRunning ? 'text-sushi animate-glow' : 'text-prussian/30'}`}>
         {formatted}
       </div>
-      <div className="flex gap-2 mb-4">
+      <div className="flex gap-2 mb-5">
         {!isRunning && !eventState.timer_paused_remaining && (
-          <Button onClick={start} className="px-5">{t('timer.start')}</Button>
+          <Button onClick={start} className="px-6">{t('timer.start')}</Button>
         )}
         {!isRunning && !!eventState.timer_paused_remaining && (
-          <Button onClick={resume} className="px-5">{t('timer.start')}</Button>
+          <Button onClick={resume} className="px-6">{t('timer.start')}</Button>
         )}
         {isRunning && (
-          <Button variant="danger" onClick={pause} className="px-5">{t('timer.pause')}</Button>
+          <Button variant="danger" onClick={pause} className="px-6">{t('timer.pause')}</Button>
         )}
-        <Button variant="ghost" onClick={reset} className="px-5">{t('timer.reset')}</Button>
+        <Button variant="ghost" onClick={reset} className="px-6">{t('timer.reset')}</Button>
       </div>
       <div className="flex gap-2 items-center">
         <Input
@@ -94,7 +94,7 @@ export default function TimerControls({ eventState }: Props) {
           className="w-32"
           min="1"
         />
-        <Button variant="secondary" size="sm" onClick={setDuration} className="px-3 py-1.5">OK</Button>
+        <Button variant="secondary" size="sm" onClick={setDuration} className="px-4">OK</Button>
       </div>
     </Card>
   )

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#ffffff"/>
+  <rect width="800" height="48" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="20" y="30" font-family="Segoe UI, Arial" font-size="14" fill="#333" font-weight="600">Contoso Support Pro</text>
+  <rect x="0" y="48" width="440" height="402" fill="#fafafa" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="220" y="140" font-family="Segoe UI, Arial" font-size="14" fill="#999" text-anchor="middle">Agent Configuration</text>
+  <rect x="440" y="48" width="360" height="402" fill="#ffffff" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="620" y="78" font-family="Segoe UI, Arial" font-size="13" fill="#333" font-weight="600" text-anchor="middle">Test your agent</text>
+  <rect x="460" y="110" width="280" height="36" rx="18" fill="#f0f0f0"/>
+  <text x="476" y="133" font-family="Segoe UI, Arial" font-size="12" fill="#666">What is the return policy?</text>
+  <rect x="460" y="160" width="280" height="80" rx="8" fill="#E8DAEF"/>
+  <text x="476" y="185" font-family="Segoe UI, Arial" font-size="12" fill="#333">Contoso offers a 30-day return</text>
+  <text x="476" y="202" font-family="Segoe UI, Arial" font-size="12" fill="#333">policy for most products. Items</text>
+  <text x="476" y="219" font-family="Segoe UI, Arial" font-size="12" fill="#333">must be in original condition.</text>
+  <rect x="460" y="260" width="280" height="36" rx="18" fill="#f0f0f0"/>
+  <text x="476" y="283" font-family="Segoe UI, Arial" font-size="12" fill="#666">How can I track my order?</text>
+  <rect x="460" y="310" width="280" height="60" rx="8" fill="#E8DAEF"/>
+  <text x="476" y="335" font-family="Segoe UI, Arial" font-size="12" fill="#333">You can track your order on</text>
+  <text x="476" y="352" font-family="Segoe UI, Arial" font-size="12" fill="#333">contoso.com/orders with your ID.</text>
+  <rect x="460" y="400" width="320" height="36" rx="18" fill="#f5f5f5" stroke="#d0d0d0" stroke-width="1"/>
+  <text x="476" y="423" font-family="Segoe UI, Arial" font-size="12" fill="#aaa">Type a message...</text>
+</svg>

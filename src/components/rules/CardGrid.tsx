@@ -2,6 +2,13 @@ import { useTranslation } from 'react-i18next'
 import { CARD_CATALOG } from '../../lib/cards'
 import ChallengeCard from '../shared/ChallengeCard'
 
+const groupColors = {
+  red: 'text-card-red',
+  orange: 'text-card-orange',
+  green: 'text-card-green',
+  purple: 'text-card-purple',
+}
+
 export default function CardGrid() {
   const { t } = useTranslation()
 
@@ -14,12 +21,15 @@ export default function CardGrid() {
 
   return (
     <div>
-      <h3 className="font-bold text-dark-slate mb-6">{t('rules.cardsRef')}</h3>
+      <h3 className="font-display font-bold text-prussian mb-8 text-lg">{t('rules.cardsRef')}</h3>
       {groups.map((g) => {
         const cards = CARD_CATALOG.filter((c) => c.color === g.color)
         return (
           <div key={g.color} className="mb-8">
-            <h4 className="text-sm font-bold uppercase tracking-widest text-slate-gray mb-3">{g.label}</h4>
+            <div className="flex items-center gap-3 mb-4">
+              <div className={`w-1 h-5 rounded-full bg-card-${g.color}`} />
+              <h4 className={`text-xs font-bold uppercase tracking-[0.15em] ${groupColors[g.color]}`}>{g.label}</h4>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {cards.map((card) => (
                 <ChallengeCard key={card.id} card={card} />

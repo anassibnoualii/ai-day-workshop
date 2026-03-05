@@ -5,9 +5,13 @@ export default function Timer() {
 
   return (
     <div
-      className={`font-mono text-6xl font-bold tracking-wider transition-all ${
-        isRunning ? 'animate-pulse-green text-sushi' : 'text-white/60'
-      } ${isLow ? 'text-card-red animate-pulse' : ''}`}
+      className={`font-mono text-6xl md:text-7xl font-bold tracking-wider transition-all duration-500 ${
+        isLow
+          ? 'text-card-red animate-pulse'
+          : isRunning
+            ? 'text-sushi animate-glow'
+            : 'text-white/30'
+      }`}
     >
       {formatted}
     </div>

@@ -12,8 +12,8 @@ export default function MyChallengeCard({ card }: Props) {
 
   if (!card) {
     return (
-      <div className="bg-surface rounded-xl p-6 text-center text-slate-gray">
-        {t('card.none')}
+      <div className="bg-white rounded-2xl p-8 text-center shadow-sm shadow-prussian/5 border-2 border-dashed border-slate-gray/20">
+        <p className="text-slate-gray text-sm">{t('card.none')}</p>
       </div>
     )
   }

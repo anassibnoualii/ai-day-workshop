@@ -49,13 +49,13 @@ export default function LinkManager({ config, workshops }: Props) {
   return (
     <div className="space-y-6">
       <Card>
-        <h3 className="font-bold text-dark-slate mb-4">{t('admin.globalDocs')}</h3>
+        <h3 className="font-display font-bold text-prussian mb-5">{t('admin.globalDocs')}</h3>
         <div className="space-y-2 mb-4">
           {config?.global_docs?.map((doc, i) => (
-            <div key={i} className="flex items-center gap-2 bg-surface rounded-lg px-4 py-2.5 text-sm">
+            <div key={i} className="flex items-center gap-3 bg-surface rounded-xl px-4 py-3 text-sm border border-surface-dark/30">
               <span className="flex-1 truncate font-medium text-dark-slate">{doc.label}</span>
               <a href={doc.url} target="_blank" rel="noopener noreferrer" className="text-sushi text-xs hover:underline truncate max-w-48">{doc.url}</a>
-              <button onClick={() => removeGlobalDoc(i)} className="text-card-red text-sm hover:opacity-70 shrink-0 transition">&times;</button>
+              <button onClick={() => removeGlobalDoc(i)} className="text-card-red text-sm hover:opacity-70 shrink-0 transition w-6 h-6 rounded-lg hover:bg-card-red/10 flex items-center justify-center">&times;</button>
             </div>
           ))}
         </div>
@@ -67,8 +67,8 @@ export default function LinkManager({ config, workshops }: Props) {
       </Card>
 
       <Card>
-        <h3 className="font-bold text-dark-slate mb-4">{t('admin.workshopDoc')}</h3>
-        <div className="space-y-2">
+        <h3 className="font-display font-bold text-prussian mb-5">{t('admin.workshopDoc')}</h3>
+        <div className="space-y-3">
           {sorted.map((w) => {
             const title = lang === 'fr' ? w.title_fr : w.title_en
             return (

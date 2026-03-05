@@ -25,7 +25,14 @@ type TabId = (typeof TABS)[number]['id']
 export default function AdminPage() {
   const { t } = useTranslation()
   const { isAuthenticated, login, logout, error } = useAdminAuth()
-  const [activeTab, setActiveTab] = useState<TabId>('timeline')
+  const [activeTab, setActiveTab] = useState<TabId>(() =>
+    (localStorage.getItem('adminTab') as TabId) || 'timeline'
+  )
+
+  const changeTab = (tab: TabId) => {
+    setActiveTab(tab)
+    localStorage.setItem('adminTab', tab)
+  }
 
   const eventState = useEventState(isAuthenticated)
   const workshops = useWorkshops(isAuthenticated)
@@ -37,25 +44,28 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-prussian">{t('admin.dashboard')}</h1>
+    <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-3">
+          <div className="w-1.5 h-10 rounded-full bg-sushi" />
+          <h1 className="font-display text-2xl md:text-3xl font-bold text-prussian">{t('admin.dashboard')}</h1>
+        </div>
         <button
           onClick={logout}
-          className="text-sm text-slate-gray hover:text-card-red transition"
+          className="text-sm text-slate-gray hover:text-card-red transition-colors px-4 py-2 rounded-lg hover:bg-card-red/5"
         >
           {t('admin.logout')}
         </button>
       </div>
 
-      <div className="flex gap-1 mb-6 bg-surface rounded-xl p-1">
+      <div className="flex gap-1 mb-8 bg-surface rounded-2xl p-1.5">
         {TABS.map((tab) => (
           <button
             key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition ${
+            onClick={() => changeTab(tab.id)}
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 ${
               activeTab === tab.id
-                ? 'bg-prussian text-white shadow-sm'
+                ? 'bg-prussian text-white shadow-md shadow-prussian/20'
                 : 'text-slate-gray hover:text-dark-slate hover:bg-white'
             }`}
           >
@@ -65,27 +75,29 @@ export default function AdminPage() {
         ))}
       </div>
 
-      {activeTab === 'timeline' && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <WorkshopActivator workshops={workshops} eventState={eventState} />
-          <TimerControls eventState={eventState} />
-        </div>
-      )}
+      <div className="animate-fade-in">
+        {activeTab === 'timeline' && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <WorkshopActivator workshops={workshops} eventState={eventState} />
+            <TimerControls eventState={eventState} />
+          </div>
+        )}
 
-      {activeTab === 'scores' && (
-        <ScoreboardManager teams={teams} />
-      )}
+        {activeTab === 'scores' && (
+          <ScoreboardManager teams={teams} />
+        )}
 
-      {activeTab === 'cards' && (
-        <CardDistributor teams={teams} />
-      )}
+        {activeTab === 'cards' && (
+          <CardDistributor teams={teams} />
+        )}
 
-      {activeTab === 'settings' && (
-        <div className="space-y-6">
-          <LinkManager config={config} workshops={workshops} />
-          <FeedbackUrlConfig config={config} />
-        </div>
-      )}
+        {activeTab === 'settings' && (
+          <div className="space-y-6">
+            <LinkManager config={config} workshops={workshops} />
+            <FeedbackUrlConfig config={config} />
+          </div>
+        )}
+      </div>
     </div>
   )
 }

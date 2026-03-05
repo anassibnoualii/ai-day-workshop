@@ -13,14 +13,14 @@ export default function AwardsSection() {
 
   return (
     <Card>
-      <h3 className="font-bold text-dark-slate mb-4">{t('rules.awardsSection')}</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <h3 className="font-display font-bold text-prussian mb-5 text-lg">{t('rules.awardsSection')}</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {awards.map((a) => (
-          <div key={a.key} className="flex items-start gap-3 bg-surface rounded-lg p-4">
-            <span className="text-2xl">{a.icon}</span>
+          <div key={a.key} className="flex items-start gap-4 bg-surface rounded-xl p-4 hover:bg-surface-dark/50 transition-colors">
+            <span className="text-3xl">{a.icon}</span>
             <div>
               <p className="font-semibold text-dark-slate">{t(`rules.${a.key}_title`)}</p>
-              <p className="text-sm text-slate-gray">{t(`rules.${a.key}_desc`)}</p>
+              <p className="text-sm text-slate-gray mt-0.5">{t(`rules.${a.key}_desc`)}</p>
             </div>
           </div>
         ))}

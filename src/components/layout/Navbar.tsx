@@ -12,21 +12,29 @@ export default function Navbar() {
     { to: '/', label: t('nav.home') },
     { to: '/live', label: t('nav.live') },
     { to: '/rules', label: t('nav.rules') },
+    { to: '/scoreboard', label: t('score.scoreboard') },
   ]
 
   return (
-    <nav className="bg-prussian text-white sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-        <Link to="/" className="font-bold text-lg tracking-tight">
-          AI Agent Day
+    <nav className="bg-prussian-dark/95 backdrop-blur-md text-white sticky top-0 z-50 border-b border-white/5">
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-2.5 group">
+          <div className="w-8 h-8 rounded-lg bg-sushi/20 flex items-center justify-center group-hover:bg-sushi/30 transition">
+            <span className="text-sushi font-bold font-mono text-sm">AI</span>
+          </div>
+          <span className="font-display font-bold text-lg tracking-tight">
+            Agent Day
+          </span>
         </Link>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-1">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              className={`text-sm font-medium transition hover:text-sushi ${
-                pathname === l.to ? 'text-sushi' : 'text-white/80'
+              className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                pathname === l.to
+                  ? 'text-sushi bg-sushi/10'
+                  : 'text-white/70 hover:text-white hover:bg-white/5'
               }`}
             >
               {l.label}
@@ -35,14 +43,18 @@ export default function Navbar() {
           {isAdmin && (
             <Link
               to="/admin"
-              className={`text-sm font-medium transition hover:text-sushi ${
-                pathname === '/admin' ? 'text-sushi' : 'text-white/80'
+              className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                pathname === '/admin'
+                  ? 'text-sushi bg-sushi/10'
+                  : 'text-white/70 hover:text-white hover:bg-white/5'
               }`}
             >
               {t('nav.admin')}
             </Link>
           )}
-          <LanguageToggle />
+          <div className="ml-2 pl-2 border-l border-white/10">
+            <LanguageToggle />
+          </div>
         </div>
       </div>
     </nav>

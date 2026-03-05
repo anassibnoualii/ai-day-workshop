@@ -1,18 +1,29 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import type { Config } from '../../types'
 
-export default function FeedbackBanner() {
+interface Props {
+  config: Config | null
+}
+
+export default function FeedbackBanner({ config }: Props) {
   const { t } = useTranslation()
 
+  if (!config?.feedback_enabled) return null
+
   return (
-    <div className="bg-prussian rounded-xl p-6 text-center">
-      <p className="text-white font-semibold mb-3">{t('feedback.cta')}</p>
-      <Link
-        to="/feedback"
-        className="inline-block bg-sushi text-prussian font-bold px-6 py-2 rounded-full hover:bg-sushi-dark transition text-sm"
-      >
-        {t('feedback.open')} &rarr;
-      </Link>
+    <div className="bg-prussian-dark rounded-2xl p-8 text-center relative overflow-hidden">
+      <div className="absolute inset-0 dot-grid opacity-15" />
+      <div className="relative z-10">
+        <p className="text-white font-semibold mb-4 text-lg">{t('feedback.cta')}</p>
+        <Link
+          to="/feedback"
+          className="inline-flex items-center gap-2 bg-sushi text-prussian-dark font-bold px-7 py-3 rounded-xl hover:bg-sushi-dark hover:shadow-lg hover:shadow-sushi/20 transition-all duration-300 text-sm"
+        >
+          {t('feedback.open')}
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+        </Link>
+      </div>
     </div>
   )
 }

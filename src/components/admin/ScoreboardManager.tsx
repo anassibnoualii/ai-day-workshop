@@ -15,10 +15,12 @@ export default function ScoreboardManager({ teams }: Props) {
   const sorted = [...teams].sort((a, b) => b.score - a.score)
   const [newName, setNewName] = useState('')
   const [newEmoji, setNewEmoji] = useState('')
-  const [customPoints, setCustomPoints] = useState<Record<string, string>>({})
+  const [pointInputs, setPointInputs] = useState<Record<string, string>>({})
 
   const addPoints = async (team: Team, delta: number) => {
+    if (delta === 0 || isNaN(delta)) return
     await pb.collection('teams').update(team.id, { score: team.score + delta })
+    setPointInputs((prev) => ({ ...prev, [team.id]: '' }))
   }
 
   const addTeam = async () => {
@@ -37,53 +39,80 @@ export default function ScoreboardManager({ teams }: Props) {
     await pb.collection('teams').delete(id)
   }
 
+  const getInputValue = (teamId: string) => pointInputs[teamId] ?? ''
+  const getNumericValue = (teamId: string) => parseInt(pointInputs[teamId] || '0')
+
   return (
     <Card>
-      <h3 className="font-bold text-dark-slate mb-4">{t('admin.scores')}</h3>
+      <h3 className="font-display font-bold text-prussian mb-5">{t('admin.scores')}</h3>
       <div className="space-y-3 mb-6">
-        {sorted.map((team, i) => (
-          <div key={team.id} className="bg-surface rounded-lg px-4 py-3">
-            <div className="flex items-center gap-3 mb-2">
-              <span className="w-6 text-center font-bold text-prussian text-sm">#{i + 1}</span>
-              <span className="text-lg">{team.emoji}</span>
-              <span className="font-semibold text-dark-slate flex-1 truncate">{team.name}</span>
-              <span className="font-mono font-bold text-prussian text-lg tabular-nums">{team.score}</span>
-              <span className="text-xs text-slate-gray">{t('score.points')}</span>
-            </div>
-            <div className="flex items-center gap-1.5 ml-9">
-              {[1, 3, 5].map((n) => (
-                <Button key={n} size="sm" onClick={() => addPoints(team, n)}>+{n}</Button>
-              ))}
-              <Button size="sm" variant="danger" onClick={() => addPoints(team, -1)}>-1</Button>
-              <div className="flex ml-1">
-                <Input
-                  type="number"
-                  value={customPoints[team.id] ?? ''}
-                  onChange={(e) => setCustomPoints({ ...customPoints, [team.id]: e.target.value })}
-                  className="w-16 rounded-r-none"
-                  placeholder="+/-"
-                />
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  className="rounded-l-none"
-                  onClick={() => {
-                    const v = parseInt(customPoints[team.id] ?? '0')
-                    if (!isNaN(v)) addPoints(team, v)
-                    setCustomPoints({ ...customPoints, [team.id]: '' })
-                  }}
-                >
-                  OK
-                </Button>
+        {sorted.map((team, i) => {
+          const inputVal = getInputValue(team.id)
+          const numVal = getNumericValue(team.id)
+          const preview = !isNaN(numVal) && numVal !== 0 ? team.score + numVal : null
+
+          return (
+            <div key={team.id} className="bg-surface rounded-xl px-4 py-3 border border-surface-dark/30">
+              <div className="flex items-center gap-3">
+                <span className="w-7 h-7 rounded-lg bg-white flex items-center justify-center font-bold text-prussian text-xs shadow-sm">#{i + 1}</span>
+                <span className="text-lg">{team.emoji}</span>
+                <span className="font-semibold text-dark-slate flex-1 truncate">{team.name}</span>
+
+                <div className="flex items-center gap-2">
+                  <Input
+                    type="number"
+                    value={inputVal}
+                    onChange={(e) => setPointInputs((prev) => ({ ...prev, [team.id]: e.target.value }))}
+                    className="w-20 text-center bg-white"
+                    placeholder="+/-"
+                  />
+                  <Button
+                    size="sm"
+                    onClick={() => addPoints(team, numVal)}
+                    disabled={!inputVal || isNaN(numVal) || numVal === 0}
+                  >
+                    {t('score.addPoints')}
+                  </Button>
+                </div>
+
+                <div className="flex items-center gap-2 ml-2 min-w-[100px] justify-end">
+                  {inputVal && !isNaN(numVal) && numVal !== 0 && (
+                    <span className={`text-sm font-bold ${numVal > 0 ? 'text-card-green' : 'text-card-red'}`}>
+                      {numVal > 0 ? '+' : ''}{numVal}
+                    </span>
+                  )}
+                  <span className="font-mono font-bold text-prussian text-xl tabular-nums">
+                    {preview !== null ? preview : team.score}
+                  </span>
+                  <span className="text-[10px] text-slate-gray uppercase">{t('score.points')}</span>
+                </div>
               </div>
-              <button onClick={() => removeTeam(team.id)} className="text-card-red text-xs hover:underline ml-auto transition">
-                {t('score.removeTeam')}
-              </button>
+
+              <div className="flex items-center justify-between mt-2 ml-10">
+                <div className="flex gap-1.5">
+                  {[5, 3, 1, -1].map((n) => (
+                    <button
+                      key={n}
+                      onClick={() => setPointInputs((prev) => ({ ...prev, [team.id]: String(n) }))}
+                      className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                        numVal === n
+                          ? n > 0 ? 'bg-card-green text-white' : 'bg-card-red text-white'
+                          : n > 0 ? 'bg-card-green/10 text-card-green hover:bg-card-green/20' : 'bg-card-red/10 text-card-red hover:bg-card-red/20'
+                      }`}
+                    >
+                      {n > 0 ? '+' : ''}{n}
+                    </button>
+                  ))}
+                </div>
+                <button onClick={() => removeTeam(team.id)} className="text-card-red text-xs hover:underline transition">
+                  {t('score.removeTeam')}
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
-      <div className="flex gap-2 bg-surface rounded-lg p-3">
+      <div className="flex gap-2 bg-surface rounded-xl p-3 border border-surface-dark/30">
         <Input
           type="text"
           value={newEmoji}

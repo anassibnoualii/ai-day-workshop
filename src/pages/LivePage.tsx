@@ -6,9 +6,9 @@ import { useChallengeCards } from '../hooks/useChallengeCards'
 import { useConfig } from '../hooks/useConfig'
 import ActiveWorkshopHero from '../components/live/ActiveWorkshopHero'
 import DayProgressTimeline from '../components/live/DayProgressTimeline'
-import Scoreboard from '../components/shared/Scoreboard'
 import TeamSelector from '../components/shared/TeamSelector'
 import MyChallengeCard from '../components/live/MyChallengeCard'
+import WorkshopGuide from '../components/live/WorkshopGuide'
 import ResourceLinks from '../components/live/ResourceLinks'
 import FeedbackBanner from '../components/live/FeedbackBanner'
 
@@ -33,24 +33,20 @@ export default function LivePage() {
   )
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
+    <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <ActiveWorkshopHero workshop={activeWorkshop} />
       <DayProgressTimeline workshops={workshops} />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 space-y-8">
-          <TeamSelector
-            teams={teams}
-            selectedTeamId={selectedTeamId}
-            onChange={setSelectedTeamId}
-          />
-          <MyChallengeCard card={myCard} />
-          <ResourceLinks config={config} activeWorkshop={activeWorkshop} />
-          <FeedbackBanner />
-        </div>
-        <div className="lg:sticky lg:top-20 lg:self-start">
-          <Scoreboard teams={teams} />
-        </div>
+      <div className="space-y-8">
+        <TeamSelector
+          teams={teams}
+          selectedTeamId={selectedTeamId}
+          onChange={setSelectedTeamId}
+        />
+        <MyChallengeCard card={myCard} />
+        <WorkshopGuide workshop={activeWorkshop} />
+        <ResourceLinks config={config} activeWorkshop={activeWorkshop} />
+        <FeedbackBanner config={config} />
       </div>
     </div>
   )

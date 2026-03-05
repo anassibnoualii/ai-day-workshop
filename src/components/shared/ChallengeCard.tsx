@@ -1,14 +1,30 @@
 import { useTranslation } from 'react-i18next'
 import type { CardDefinition } from '../../types'
 
-const colorMap = {
-  red: 'border-card-red bg-card-red/10',
-  orange: 'border-card-orange bg-card-orange/10',
-  green: 'border-card-green bg-card-green/10',
-  purple: 'border-card-purple bg-card-purple/10',
+const colorMap: Record<string, { bg: string; border: string; selectedBorder: string }> = {
+  red: {
+    bg: 'bg-card-red/5',
+    border: 'border-card-red/20',
+    selectedBorder: 'border-card-red',
+  },
+  orange: {
+    bg: 'bg-card-orange/5',
+    border: 'border-card-orange/20',
+    selectedBorder: 'border-card-orange',
+  },
+  green: {
+    bg: 'bg-card-green/5',
+    border: 'border-card-green/20',
+    selectedBorder: 'border-card-green',
+  },
+  purple: {
+    bg: 'bg-card-purple/5',
+    border: 'border-card-purple/20',
+    selectedBorder: 'border-card-purple',
+  },
 }
 
-const badgeMap = {
+const badgeMap: Record<string, string> = {
   red: 'bg-card-red',
   orange: 'bg-card-orange',
   green: 'bg-card-green',
@@ -18,27 +34,30 @@ const badgeMap = {
 interface Props {
   card: CardDefinition
   animated?: boolean
+  selected?: boolean
+  compact?: boolean
 }
 
-export default function ChallengeCard({ card, animated }: Props) {
+export default function ChallengeCard({ card, animated, selected, compact }: Props) {
   const { i18n } = useTranslation()
   const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
   const title = lang === 'fr' ? card.title_fr : card.title_en
   const mission = lang === 'fr' ? card.mission_fr : card.mission_en
+  const colors = colorMap[card.color]
 
   return (
     <div
-      className={`border-2 rounded-xl p-5 ${colorMap[card.color]} ${
-        animated ? 'animate-card-pop' : ''
-      }`}
+      className={`rounded-xl p-4 h-full flex flex-col border-2 transition-all duration-200 ${colors.bg} ${
+        selected ? `${colors.selectedBorder} shadow-md` : `${colors.border} hover:shadow-sm`
+      } ${animated ? 'animate-card-pop' : ''}`}
     >
-      <div className="flex items-center gap-2 mb-3">
-        <span className={`${badgeMap[card.color]} text-white text-xs font-bold px-2 py-0.5 rounded-full`}>
+      <div className="flex items-center gap-2 mb-2">
+        <span className={`${badgeMap[card.color]} text-white text-[11px] font-bold px-2 py-0.5 rounded-md shrink-0`}>
           +{card.points} pt{card.points > 1 ? 's' : ''}
         </span>
-        <h4 className="font-bold text-dark-slate">{title}</h4>
+        <h4 className="font-semibold text-dark-slate text-sm leading-tight">{title}</h4>
       </div>
-      <p className="text-sm text-slate-gray leading-relaxed">{mission}</p>
+      <p className={`text-xs text-slate-gray leading-relaxed ${compact ? 'line-clamp-3' : ''}`}>{mission}</p>
     </div>
   )
 }

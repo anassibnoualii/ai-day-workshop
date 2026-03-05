@@ -17,19 +17,19 @@ export default function ScoringTable() {
 
   return (
     <Card>
-      <h3 className="font-bold text-dark-slate mb-4">{t('rules.scoring')}</h3>
+      <h3 className="font-display font-bold text-prussian mb-5 text-lg">{t('rules.scoring')}</h3>
       <table className="w-full text-sm">
         <thead>
-          <tr className="border-b">
-            <th className="text-left py-2 text-slate-gray font-medium">{t('rules.action')}</th>
-            <th className="text-right py-2 text-slate-gray font-medium">{t('rules.pts')}</th>
+          <tr className="border-b border-surface-dark">
+            <th className="text-left py-2.5 text-slate-gray font-medium text-xs uppercase tracking-wide">{t('rules.action')}</th>
+            <th className="text-right py-2.5 text-slate-gray font-medium text-xs uppercase tracking-wide">{t('rules.pts')}</th>
           </tr>
         </thead>
         <tbody>
           {rows.map((r) => (
-            <tr key={r.key} className="border-b border-surface">
-              <td className="py-2 text-dark-slate">{t(`rules.${r.key}`)}</td>
-              <td className="py-2 text-right font-mono font-bold text-sushi">{r.pts}</td>
+            <tr key={r.key} className="border-b border-surface/80 hover:bg-surface/50 transition-colors">
+              <td className="py-2.5 text-dark-slate">{t(`rules.${r.key}`)}</td>
+              <td className="py-2.5 text-right font-mono font-bold text-sushi">{r.pts}</td>
             </tr>
           ))}
         </tbody>

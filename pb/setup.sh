@@ -37,7 +37,7 @@ echo "Step 3: Creating collections..."
 for name in event_state workshops teams challenge_cards config; do
   echo "  $name"
   curl -s -X POST "$PB_URL/api/collections" -H "$H" -H "$C" \
-    -d "{\"name\":\"$name\",\"type\":\"base\",\"listRule\":\"\",\"viewRule\":\"\"}" > /dev/null 2>&1 || true
+    -d "{\"name\":\"$name\",\"type\":\"base\",\"listRule\":\"\",\"viewRule\":\"\",\"createRule\":\"\",\"updateRule\":\"\",\"deleteRule\":\"\"}" > /dev/null 2>&1 || true
 done
 
 echo ""
@@ -51,7 +51,7 @@ curl -s -X PATCH "$PB_URL/api/collections/event_state" -H "$H" -H "$C" -d "{\"fi
   {\"name\":\"timer_started_at\",\"type\":\"number\"},
   {\"name\":\"timer_running\",\"type\":\"bool\"},
   {\"name\":\"timer_paused_remaining\",\"type\":\"number\"}
-],\"listRule\":\"\",\"viewRule\":\"\"}" > /dev/null
+],\"listRule\":\"\",\"viewRule\":\"\",\"createRule\":\"\",\"updateRule\":\"\",\"deleteRule\":\"\"}" > /dev/null
 
 echo "  workshops"
 curl -s -X PATCH "$PB_URL/api/collections/workshops" -H "$H" -H "$C" -d "{\"fields\":[$ID_FIELD,
@@ -61,7 +61,7 @@ curl -s -X PATCH "$PB_URL/api/collections/workshops" -H "$H" -H "$C" -d "{\"fiel
   {\"name\":\"duration\",\"type\":\"number\",\"required\":true},
   {\"name\":\"doc_url\",\"type\":\"url\"},
   {\"name\":\"order\",\"type\":\"number\",\"required\":true}
-],\"listRule\":\"\",\"viewRule\":\"\"}" > /dev/null
+],\"listRule\":\"\",\"viewRule\":\"\",\"createRule\":\"\",\"updateRule\":\"\",\"deleteRule\":\"\"}" > /dev/null
 
 echo "  teams"
 curl -s -X PATCH "$PB_URL/api/collections/teams" -H "$H" -H "$C" -d "{\"fields\":[$ID_FIELD,
@@ -69,7 +69,7 @@ curl -s -X PATCH "$PB_URL/api/collections/teams" -H "$H" -H "$C" -d "{\"fields\"
   {\"name\":\"emoji\",\"type\":\"text\"},
   {\"name\":\"slogan\",\"type\":\"text\"},
   {\"name\":\"score\",\"type\":\"number\"}
-],\"listRule\":\"\",\"viewRule\":\"\"}" > /dev/null
+],\"listRule\":\"\",\"viewRule\":\"\",\"createRule\":\"\",\"updateRule\":\"\",\"deleteRule\":\"\"}" > /dev/null
 
 echo "  challenge_cards"
 curl -s -X PATCH "$PB_URL/api/collections/challenge_cards" -H "$H" -H "$C" -d "{\"fields\":[$ID_FIELD,
@@ -83,13 +83,14 @@ curl -s -X PATCH "$PB_URL/api/collections/challenge_cards" -H "$H" -H "$C" -d "{
   {\"name\":\"mission_en\",\"type\":\"text\"},
   {\"name\":\"status\",\"type\":\"text\"},
   {\"name\":\"revealed_at\",\"type\":\"date\"}
-],\"listRule\":\"\",\"viewRule\":\"\"}" > /dev/null
+],\"listRule\":\"\",\"viewRule\":\"\",\"createRule\":\"\",\"updateRule\":\"\",\"deleteRule\":\"\"}" > /dev/null
 
 echo "  config"
 curl -s -X PATCH "$PB_URL/api/collections/config" -H "$H" -H "$C" -d "{\"fields\":[$ID_FIELD,
   {\"name\":\"feedback_url\",\"type\":\"url\"},
+  {\"name\":\"feedback_enabled\",\"type\":\"bool\"},
   {\"name\":\"global_docs\",\"type\":\"json\"}
-],\"listRule\":\"\",\"viewRule\":\"\"}" > /dev/null
+],\"listRule\":\"\",\"viewRule\":\"\",\"createRule\":\"\",\"updateRule\":\"\",\"deleteRule\":\"\"}" > /dev/null
 
 echo ""
 echo "Step 5: Seeding data..."
@@ -139,7 +140,7 @@ fi
 
 COUNT=$(collection_count "config")
 if [ "${COUNT:-0}" = "0" ]; then
-  rec "config" '{"feedback_url":"https://forms.office.com/example","global_docs":[{"label":"Slides de la journee","url":"https://contoso.sharepoint.com/slides"},{"label":"Guide Copilot Studio","url":"https://contoso.sharepoint.com/guides"},{"label":"Lab GitHub Repository","url":"https://github.com/alithya/agentday"},{"label":"Contoso Refund Policy","url":"https://contoso.sharepoint.com/policy"},{"label":"Contoso Product Catalog","url":"https://contoso.sharepoint.com/catalog"}]}'
+  rec "config" '{"feedback_url":"https://forms.office.com/example","feedback_enabled":false,"global_docs":[{"label":"Slides de la journee","url":"https://contoso.sharepoint.com/slides"},{"label":"Guide Copilot Studio","url":"https://contoso.sharepoint.com/guides"},{"label":"Lab GitHub Repository","url":"https://github.com/alithya/agentday"},{"label":"Contoso Refund Policy","url":"https://contoso.sharepoint.com/policy"},{"label":"Contoso Product Catalog","url":"https://contoso.sharepoint.com/catalog"}]}'
   echo "  config: seeded"
 else
   echo "  config: exists ($COUNT)"

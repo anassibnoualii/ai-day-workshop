@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#ffffff"/>
+  <rect width="800" height="48" fill="#742774"/>
+  <text x="20" y="30" font-family="Segoe UI, Arial" font-size="14" fill="white" font-weight="600">Copilot Studio - Topics</text>
+  <text x="400" y="85" font-family="Segoe UI, Arial" font-size="14" fill="#333" font-weight="600" text-anchor="middle">Cancel Order Topic</text>
+  <rect x="200" y="105" width="400" height="48" rx="8" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1"/>
+  <text x="400" y="125" font-family="Segoe UI, Arial" font-size="11" fill="#333" text-anchor="middle" font-weight="600">Trigger phrases:</text>
+  <text x="400" y="142" font-family="Segoe UI, Arial" font-size="10" fill="#666" text-anchor="middle">"cancel my order" | "I want to cancel" | "annuler ma commande"</text>
+  <line x1="400" y1="153" x2="400" y2="175" stroke="#999" stroke-width="2"/>
+  <rect x="200" y="175" width="400" height="40" rx="8" fill="#E3F2FD" stroke="#2196F3" stroke-width="1"/>
+  <text x="400" y="200" font-family="Segoe UI, Arial" font-size="11" fill="#333" text-anchor="middle">Message: "I can help you cancel your order."</text>
+  <line x1="400" y1="215" x2="400" y2="237" stroke="#999" stroke-width="2"/>
+  <rect x="200" y="237" width="400" height="40" rx="8" fill="#FFF3E0" stroke="#FF9800" stroke-width="1"/>
+  <text x="400" y="262" font-family="Segoe UI, Arial" font-size="11" fill="#333" text-anchor="middle">Question: "What is your order number?"</text>
+  <line x1="400" y1="277" x2="400" y2="299" stroke="#999" stroke-width="2"/>
+  <rect x="200" y="299" width="400" height="48" rx="8" fill="#0066FF"/>
+  <text x="400" y="319" font-family="Segoe UI, Arial" font-size="11" fill="white" text-anchor="middle" font-weight="600">Call an action</text>
+  <text x="400" y="336" font-family="Segoe UI, Arial" font-size="10" fill="white/80" text-anchor="middle">Contoso Order Cancellation Flow</text>
+  <line x1="400" y1="347" x2="400" y2="369" stroke="#999" stroke-width="2"/>
+  <rect x="200" y="369" width="400" height="40" rx="8" fill="#E3F2FD" stroke="#2196F3" stroke-width="1"/>
+  <text x="400" y="394" font-family="Segoe UI, Arial" font-size="11" fill="#333" text-anchor="middle">Message: "Your order has been cancelled. Confirmation sent!"</text>
+</svg>

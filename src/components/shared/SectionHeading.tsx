@@ -5,8 +5,11 @@ interface Props {
 
 export default function SectionHeading({ children, className = '' }: Props) {
   return (
-    <h3 className={`text-sm font-bold uppercase tracking-widest text-sushi mb-3 ${className}`}>
-      {children}
-    </h3>
+    <div className={`flex items-center gap-3 mb-4 ${className}`}>
+      <div className="w-1 h-5 rounded-full bg-sushi" />
+      <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-prussian">
+        {children}
+      </h3>
+    </div>
   )
 }

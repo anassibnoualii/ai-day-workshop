@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#ffffff"/>
+  <rect width="800" height="48" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="20" y="30" font-family="Segoe UI, Arial" font-size="14" fill="#333" font-weight="600">Contoso Support Pro - Instructions</text>
+  <rect x="40" y="70" width="720" height="350" rx="8" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="60" y="100" font-family="Segoe UI, Arial" font-size="13" fill="#333" font-weight="600">Instructions</text>
+  <rect x="60" y="110" width="680" height="260" rx="4" fill="#1e1e1e"/>
+  <text x="72" y="135" font-family="Consolas, monospace" font-size="12" fill="#9CDCFE">You are a customer support agent for Contoso.</text>
+  <text x="72" y="158" font-family="Consolas, monospace" font-size="12" fill="#9CDCFE"></text>
+  <text x="72" y="178" font-family="Consolas, monospace" font-size="12" fill="#C586C0">## Role</text>
+  <text x="72" y="198" font-family="Consolas, monospace" font-size="12" fill="#9CDCFE">- You assist customers with questions</text>
+  <text x="72" y="218" font-family="Consolas, monospace" font-size="12" fill="#9CDCFE">- You are professional and concise</text>
+  <text x="72" y="248" font-family="Consolas, monospace" font-size="12" fill="#C586C0">## Rules</text>
+  <text x="72" y="268" font-family="Consolas, monospace" font-size="12" fill="#9CDCFE">- Always respond in 3 sentences max</text>
+  <text x="72" y="288" font-family="Consolas, monospace" font-size="12" fill="#9CDCFE">- Never fabricate information</text>
+  <text x="72" y="318" font-family="Consolas, monospace" font-size="12" fill="#C586C0">## Tone</text>
+  <text x="72" y="338" font-family="Consolas, monospace" font-size="12" fill="#9CDCFE">- Professional but approachable</text>
+  <rect x="600" y="385" width="120" height="28" rx="6" fill="#6264A7"/>
+  <text x="660" y="404" font-family="Segoe UI, Arial" font-size="12" fill="white" text-anchor="middle">Save</text>
+</svg>
