@@ -1,0 +1,157 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "live": "Suivre la journee",
+    "rules": "Regles & Cartes",
+    "admin": "Admin"
+  },
+  "hero": {
+    "title": "Build & Scale an AI Agent",
+    "subtitle": "Une journee pour construire, tester et deployer l'agent IA de Contoso Corporation avec Microsoft Copilot Studio et Copilot Agent Builder.",
+    "date": "Mars 2026 - Alithya Montreal",
+    "cta": "Suivre la journee en direct"
+  },
+  "about": {
+    "title": "A propos de la journee",
+    "text": "Bienvenue dans l'Agent in a Day d'Alithya — une experience immersive et gamifiee inspiree du workshop officiel Microsoft. En equipe, vous construirez un vrai agent de support client pour Contoso Corporation, de la conversation de base jusqu'a l'automatisation autonome complete."
+  },
+  "programme": {
+    "title": "Programme de la journee",
+    "icebreaker": "Icebreaker & Intro",
+    "setup": "Formation des equipes",
+    "atelier1": "Atelier 1 — Agent Declaratif",
+    "atelier1_desc": "Copilot Chat — Agent Builder",
+    "pause": "Pause",
+    "atelier2": "Atelier 2 — Agent Conversationnel",
+    "atelier2_desc": "Copilot Studio — Knowledge",
+    "keynote": "Discours / Keynote",
+    "lunch": "Dejeuner",
+    "atelier3": "Atelier 3 — Agent Autonome",
+    "atelier3_desc": "Copilot Studio — Flows & Triggers",
+    "awards": "Awards & Feedback"
+  },
+  "deliverables": {
+    "title": "Ce que vous allez construire",
+    "d1_title": "Agent Conversationnel Contoso",
+    "d1_desc": "Agent de support client cree dans Copilot Agent Builder et configure dans Copilot Studio.",
+    "d2_title": "3 Sources de Connaissance Connectees",
+    "d2_desc": "SharePoint interne Contoso + document de politique + page web externe — toutes en statut Ready.",
+    "d3_title": "Custom Prompt Tool",
+    "d3_desc": "Template de prompt structure pour generer les confirmations d'annulation de commande Contoso.",
+    "d4_title": "Agent Flow Autonome",
+    "d4_desc": "Flow complet : demande client vers SharePoint vers email de confirmation automatique. 0 intervention humaine.",
+    "d5_title": "Pitch Structure 2 Minutes",
+    "d5_desc": "Presentation : probleme Contoso, solution agent, ROI."
+  },
+  "gamification": {
+    "title": "Gamification",
+    "flags": "Drapeaux",
+    "flag_green": "Vert = Etape validee",
+    "flag_orange": "Orange = Besoin d'aide",
+    "flag_red": "Rouge = Bloques — facilitateur",
+    "cards": "Cartes",
+    "card_red": "+5 pts (Difficile)",
+    "card_orange": "+3 pts (Intermediaire)",
+    "card_green": "+1 pt (Rapide)",
+    "awards_title": "Recompenses",
+    "award1": "Best Autonomous Agent",
+    "award2": "Best Business Impact",
+    "award3": "Best Innovation",
+    "award4": "Best Team Collaboration"
+  },
+  "workshop": {
+    "active": "EN COURS",
+    "done": "TERMINE",
+    "upcoming": "A VENIR",
+    "break": "PAUSE"
+  },
+  "timer": {
+    "remaining": "restantes",
+    "start": "Demarrer",
+    "pause": "Pause",
+    "reset": "Reinitialiser",
+    "duration": "Duree (min)"
+  },
+  "score": {
+    "scoreboard": "Classement",
+    "points": "pts",
+    "yourTeam": "Votre equipe",
+    "addTeam": "Ajouter equipe",
+    "removeTeam": "Supprimer"
+  },
+  "card": {
+    "none": "Aucune carte active — en attente du facilitateur",
+    "new": "Nouvelle carte !",
+    "myCard": "Ma Carte Defi",
+    "reveal": "Reveler",
+    "allCards": "Toutes les cartes"
+  },
+  "feedback": {
+    "cta": "Donnez-nous votre avis",
+    "open": "Ouvrir le formulaire"
+  },
+  "admin": {
+    "login": "Connexion Admin",
+    "dashboard": "Tableau de bord",
+    "email": "Email",
+    "password": "Mot de passe",
+    "signIn": "Se connecter",
+    "logout": "Deconnexion",
+    "sessions": "Sessions",
+    "workshops": "Ateliers",
+    "activate": "Activer",
+    "scores": "Scores",
+    "cards": "Cartes Defi",
+    "links": "Liens & Docs",
+    "feedbackUrl": "URL Feedback",
+    "save": "Sauvegarder",
+    "globalDocs": "Documents globaux",
+    "workshopDoc": "Document atelier",
+    "addDoc": "Ajouter un document",
+    "label": "Libelle",
+    "url": "URL",
+    "tabTimeline": "Timeline & Chrono",
+    "tabScores": "Scores & Equipes",
+    "tabCards": "Cartes Defi",
+    "tabSettings": "Docs & Parametres"
+  },
+  "rules": {
+    "title": "Regles & Cartes de Defi",
+    "flagSystem": "Systeme de drapeaux",
+    "flagGreen": "Drapeau Vert — Etape validee, pret pour la suite",
+    "flagOrange": "Drapeau Orange — Besoin d'aide, le facilitateur passe",
+    "flagRed": "Drapeau Rouge — Bloques, le facilitateur intervient immediatement",
+    "scoring": "Systeme de points",
+    "action": "Action",
+    "pts": "Points",
+    "teamName": "Nom d'equipe + slogan creatif",
+    "greenCard": "Carte Verte completee",
+    "orangeCard": "Carte Orange completee",
+    "redCard": "Carte Rouge completee",
+    "jokerAction": "Joker — voler une equipe",
+    "speedRunAction": "Speed Run complete",
+    "pitchAction": "Pitch Card reussie",
+    "bestDemo": "Meilleure demo",
+    "cardsRef": "Reference des 15 cartes",
+    "redCards": "Cartes Rouges — Difficile",
+    "orangeCards": "Cartes Orange — Intermediaire",
+    "greenCards": "Cartes Vertes — Rapide",
+    "specialCards": "Cartes Speciales",
+    "awardsSection": "Recompenses",
+    "award1_title": "Best Autonomous Agent",
+    "award1_desc": "Flow le plus complet et fonctionnel",
+    "award2_title": "Best Business Impact",
+    "award2_desc": "Meilleur calcul de ROI / impact demontre",
+    "award3_title": "Best Innovation",
+    "award3_desc": "Cas d'usage le plus creatif ou inattendu",
+    "award4_title": "Best Team Collaboration",
+    "award4_desc": "Meilleure dynamique d'equipe"
+  },
+  "live": {
+    "title": "Journee en direct",
+    "progress": "Progression de la journee",
+    "resources": "Ressources",
+    "workshopDoc": "Document de l'atelier",
+    "selectTeam": "Selectionnez votre equipe"
+  }
+}

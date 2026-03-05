@@ -1,0 +1,47 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.17/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.17",
+  "version": "1.0.0",
+  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "developer": {
+    "name": "Alithya",
+    "websiteUrl": "https://www.alithya.com",
+    "privacyUrl": "https://www.alithya.com/privacy",
+    "termsOfUseUrl": "https://www.alithya.com/terms"
+  },
+  "name": {
+    "short": "AI Agent Day",
+    "full": "Alithya — Build & Scale an AI Agent"
+  },
+  "description": {
+    "short": "Live event companion for AI Agent Day",
+    "full": "Interactive event platform for AI Agent Day workshop — live timer, scoreboard, challenge cards, and resources."
+  },
+  "icons": {
+    "outline": "vite.svg",
+    "color": "vite.svg"
+  },
+  "accentColor": "#9DC241",
+  "staticTabs": [
+    {
+      "entityId": "home",
+      "name": "Programme",
+      "contentUrl": "https://agentday.alithya.com/",
+      "scopes": ["personal"]
+    },
+    {
+      "entityId": "live",
+      "name": "Suivre la journee",
+      "contentUrl": "https://agentday.alithya.com/live",
+      "scopes": ["personal"]
+    },
+    {
+      "entityId": "rules",
+      "name": "Regles & Cartes",
+      "contentUrl": "https://agentday.alithya.com/rules",
+      "scopes": ["personal"]
+    }
+  ],
+  "permissions": ["identity", "messageTeamMembers"],
+  "validDomains": ["agentday.alithya.com"]
+}

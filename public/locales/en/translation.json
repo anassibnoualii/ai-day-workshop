@@ -1,0 +1,157 @@
+{
+  "nav": {
+    "home": "Home",
+    "live": "Follow the day",
+    "rules": "Rules & Cards",
+    "admin": "Admin"
+  },
+  "hero": {
+    "title": "Build & Scale an AI Agent",
+    "subtitle": "A full day to build, test, and deploy Contoso Corporation's AI agent using Microsoft Copilot Studio and Copilot Agent Builder.",
+    "date": "March 2026 - Alithya Montreal",
+    "cta": "Follow the day live"
+  },
+  "about": {
+    "title": "About the Day",
+    "text": "Welcome to Alithya's Agent in a Day — an immersive, gamified experience inspired by the official Microsoft workshop. As a team, you'll build a real customer support agent for Contoso Corporation, from basic conversation to full autonomous automation."
+  },
+  "programme": {
+    "title": "Day Programme",
+    "icebreaker": "Icebreaker & Intro",
+    "setup": "Team Formation",
+    "atelier1": "Workshop 1 — Declarative Agent",
+    "atelier1_desc": "Copilot Chat — Agent Builder",
+    "pause": "Break",
+    "atelier2": "Workshop 2 — Conversational Agent",
+    "atelier2_desc": "Copilot Studio — Knowledge",
+    "keynote": "Keynote",
+    "lunch": "Lunch",
+    "atelier3": "Workshop 3 — Autonomous Agent",
+    "atelier3_desc": "Copilot Studio — Flows & Triggers",
+    "awards": "Awards & Feedback"
+  },
+  "deliverables": {
+    "title": "What You'll Build",
+    "d1_title": "Contoso Conversational Agent",
+    "d1_desc": "Customer support agent created in Copilot Agent Builder and configured in Copilot Studio.",
+    "d2_title": "3 Connected Knowledge Sources",
+    "d2_desc": "Internal Contoso SharePoint + policy document + external webpage — all Ready status.",
+    "d3_title": "Custom Prompt Tool",
+    "d3_desc": "Structured prompt template to generate Contoso order cancellation confirmations.",
+    "d4_title": "Autonomous Agent Flow",
+    "d4_desc": "Complete flow: customer request to SharePoint to automatic confirmation email. 0 human intervention.",
+    "d5_title": "2-Minute Structured Pitch",
+    "d5_desc": "Presentation: Contoso problem, agent solution, ROI."
+  },
+  "gamification": {
+    "title": "Gamification",
+    "flags": "Flags",
+    "flag_green": "Green = Step validated",
+    "flag_orange": "Orange = Need help",
+    "flag_red": "Red = Blocked — facilitator",
+    "cards": "Cards",
+    "card_red": "+5 pts (Hard)",
+    "card_orange": "+3 pts (Medium)",
+    "card_green": "+1 pt (Quick)",
+    "awards_title": "Awards",
+    "award1": "Best Autonomous Agent",
+    "award2": "Best Business Impact",
+    "award3": "Best Innovation",
+    "award4": "Best Team Collaboration"
+  },
+  "workshop": {
+    "active": "ACTIVE",
+    "done": "DONE",
+    "upcoming": "UPCOMING",
+    "break": "BREAK"
+  },
+  "timer": {
+    "remaining": "remaining",
+    "start": "Start",
+    "pause": "Pause",
+    "reset": "Reset",
+    "duration": "Duration (min)"
+  },
+  "score": {
+    "scoreboard": "Scoreboard",
+    "points": "pts",
+    "yourTeam": "Your team",
+    "addTeam": "Add team",
+    "removeTeam": "Remove"
+  },
+  "card": {
+    "none": "No active card — waiting for facilitator",
+    "new": "New card!",
+    "myCard": "My Challenge Card",
+    "reveal": "Reveal",
+    "allCards": "All cards"
+  },
+  "feedback": {
+    "cta": "Give us your feedback",
+    "open": "Open form"
+  },
+  "admin": {
+    "login": "Admin Login",
+    "dashboard": "Admin Dashboard",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "logout": "Logout",
+    "sessions": "Sessions",
+    "workshops": "Workshops",
+    "activate": "Activate",
+    "scores": "Scores",
+    "cards": "Challenge Cards",
+    "links": "Links & Docs",
+    "feedbackUrl": "Feedback URL",
+    "save": "Save",
+    "globalDocs": "Global Documents",
+    "workshopDoc": "Workshop Document",
+    "addDoc": "Add document",
+    "label": "Label",
+    "url": "URL",
+    "tabTimeline": "Timeline & Timer",
+    "tabScores": "Scores & Teams",
+    "tabCards": "Challenge Cards",
+    "tabSettings": "Docs & Settings"
+  },
+  "rules": {
+    "title": "Rules & Challenge Cards",
+    "flagSystem": "Flag System",
+    "flagGreen": "Green Flag — Step validated, ready to move on",
+    "flagOrange": "Orange Flag — Need help, facilitator comes by",
+    "flagRed": "Red Flag — Blocked, facilitator intervenes immediately",
+    "scoring": "Scoring System",
+    "action": "Action",
+    "pts": "Points",
+    "teamName": "Creative team name + slogan",
+    "greenCard": "Green Card completed",
+    "orangeCard": "Orange Card completed",
+    "redCard": "Red Card completed",
+    "jokerAction": "Joker — steal from a team",
+    "speedRunAction": "Speed Run completed",
+    "pitchAction": "Pitch Card succeeded",
+    "bestDemo": "Best demo",
+    "cardsRef": "15 Cards Reference",
+    "redCards": "Red Cards — Hard",
+    "orangeCards": "Orange Cards — Medium",
+    "greenCards": "Green Cards — Quick",
+    "specialCards": "Special Cards",
+    "awardsSection": "Awards",
+    "award1_title": "Best Autonomous Agent",
+    "award1_desc": "Most complete and functional flow",
+    "award2_title": "Best Business Impact",
+    "award2_desc": "Best ROI calculation / demonstrated impact",
+    "award3_title": "Best Innovation",
+    "award3_desc": "Most creative or unexpected use case",
+    "award4_title": "Best Team Collaboration",
+    "award4_desc": "Best team dynamics"
+  },
+  "live": {
+    "title": "Live Day",
+    "progress": "Day Progress",
+    "resources": "Resources",
+    "workshopDoc": "Workshop Document",
+    "selectTeam": "Select your team"
+  }
+}

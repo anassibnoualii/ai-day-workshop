@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --color-prussian: #002957;
+  --color-prussian-light: #003a7a;
+  --color-sushi: #9DC241;
+  --color-sushi-dark: #7fa832;
+  --color-surface: #F4F6F9;
+  --color-dark-slate: #1A2B3C;
+  --color-slate-gray: #6B7A8D;
+  --color-card-red: #D7263D;
+  --color-card-orange: #F4A300;
+  --color-card-green: #9DC241;
+  --color-card-purple: #6A0DAD;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+@keyframes float-up {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-40px); }
+}
+
+@keyframes card-pop {
+  0% { transform: scale(0); opacity: 0; }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(157, 194, 65, 0.4); }
+  50% { box-shadow: 0 0 20px 10px rgba(157, 194, 65, 0.2); }
+}
+
+@utility animate-float-up {
+  animation: float-up 1.2s ease-out forwards;
+}
+
+@utility animate-card-pop {
+  animation: card-pop 0.4s ease-out forwards;
+}
+
+@utility animate-pulse-green {
+  animation: pulse-green 2s ease-in-out infinite;
+}
