@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { Config } from '../../types'
-import pb from '../../lib/pocketbase'
+import { updateFeedbackUrl, toggleFeedbackEnabled } from '../../services/configService'
 import Card from '../shared/Card'
 import Button from '../shared/Button'
 import Input from '../shared/Input'
@@ -26,16 +26,16 @@ export default function FeedbackUrlConfig({ config }: Props) {
 
   const save = async () => {
     if (!config) return
-    await pb.collection('config').update(config.id, { feedback_url: url })
+    await updateFeedbackUrl(config.id, url)
   }
 
-  const toggleEnabled = async () => {
+  const handleToggle = async () => {
     if (!config) return
     const next = !enabled
     setEnabled(next)
     pendingToggle.current = true
     try {
-      await pb.collection('config').update(config.id, { feedback_enabled: next })
+      await toggleFeedbackEnabled(config.id, next)
     } catch (err) {
       console.error('Failed to toggle feedback:', err)
       setEnabled(!next)
@@ -49,7 +49,7 @@ export default function FeedbackUrlConfig({ config }: Props) {
         <h3 className="font-display font-bold text-prussian">{t('admin.feedbackUrl')}</h3>
         <button
           type="button"
-          onClick={toggleEnabled}
+          onClick={handleToggle}
           className={`relative w-12 h-6 rounded-full transition-colors duration-200 ${
             enabled ? 'bg-sushi' : 'bg-slate-gray/30'
           }`}

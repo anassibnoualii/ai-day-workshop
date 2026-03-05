@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import pb from '../lib/pocketbase'
+import { fetchAll } from '../services/collectionService'
 
 export function usePolling<T>(
   collection: string,
@@ -15,7 +15,7 @@ export function usePolling<T>(
 
     const poll = async () => {
       try {
-        const records = await pb.collection(collection).getFullList<T>()
+        const records = await fetchAll<T>(collection)
         const json = JSON.stringify(records)
         if (json !== prev.current) {
           prev.current = json
@@ -49,7 +49,7 @@ export function useSingleRecordPolling<T>(
 
     const poll = async () => {
       try {
-        const records = await pb.collection(collection).getFullList<T>()
+        const records = await fetchAll<T>(collection)
         if (records.length > 0) {
           const json = JSON.stringify(records[0])
           if (json !== prev.current) {

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { Config, Workshop } from '../../types'
-import pb from '../../lib/pocketbase'
+import { addGlobalDoc, removeGlobalDoc } from '../../services/configService'
+import { updateWorkshopDocUrl } from '../../services/workshopService'
 import Card from '../shared/Card'
 import Button from '../shared/Button'
 import Input from '../shared/Input'
@@ -27,23 +28,16 @@ export default function LinkManager({ config, workshops }: Props) {
     setWorkshopUrls(urls)
   }, [workshops])
 
-  const addGlobalDoc = async () => {
+  const handleAddGlobalDoc = async () => {
     if (!config || !newLabel.trim() || !newUrl.trim()) return
-    const docs = [...config.global_docs, { label: newLabel.trim(), url: newUrl.trim() }]
-    await pb.collection('config').update(config.id, { global_docs: docs })
+    await addGlobalDoc(config, newLabel.trim(), newUrl.trim())
     setNewLabel('')
     setNewUrl('')
   }
 
-  const removeGlobalDoc = async (index: number) => {
+  const handleRemoveGlobalDoc = async (index: number) => {
     if (!config) return
-    const docs = config.global_docs.filter((_, i) => i !== index)
-    await pb.collection('config').update(config.id, { global_docs: docs })
-  }
-
-  const updateWorkshopDoc = async (workshopId: string) => {
-    const url = workshopUrls[workshopId] ?? ''
-    await pb.collection('workshops').update(workshopId, { doc_url: url || null })
+    await removeGlobalDoc(config, index)
   }
 
   return (
@@ -55,14 +49,14 @@ export default function LinkManager({ config, workshops }: Props) {
             <div key={i} className="flex items-center gap-3 bg-surface rounded-xl px-4 py-3 text-sm border border-surface-dark/30">
               <span className="flex-1 truncate font-medium text-dark-slate">{doc.label}</span>
               <a href={doc.url} target="_blank" rel="noopener noreferrer" className="text-sushi text-xs hover:underline truncate max-w-48">{doc.url}</a>
-              <button onClick={() => removeGlobalDoc(i)} className="text-card-red text-sm hover:opacity-70 shrink-0 transition w-6 h-6 rounded-lg hover:bg-card-red/10 flex items-center justify-center">&times;</button>
+              <button onClick={() => handleRemoveGlobalDoc(i)} className="text-card-red text-sm hover:opacity-70 shrink-0 transition w-6 h-6 rounded-lg hover:bg-card-red/10 flex items-center justify-center">&times;</button>
             </div>
           ))}
         </div>
         <div className="flex gap-2">
           <Input type="text" value={newLabel} onChange={(e) => setNewLabel(e.target.value)} placeholder={t('admin.label')} className="flex-1" />
           <Input type="url" value={newUrl} onChange={(e) => setNewUrl(e.target.value)} placeholder={t('admin.url')} className="flex-1" />
-          <Button onClick={addGlobalDoc}>+</Button>
+          <Button onClick={handleAddGlobalDoc}>+</Button>
         </div>
       </Card>
 
@@ -78,7 +72,7 @@ export default function LinkManager({ config, workshops }: Props) {
                   type="url"
                   value={workshopUrls[w.id] ?? ''}
                   onChange={(e) => setWorkshopUrls({ ...workshopUrls, [w.id]: e.target.value })}
-                  onBlur={() => updateWorkshopDoc(w.id)}
+                  onBlur={() => updateWorkshopDocUrl(w.id, workshopUrls[w.id] ?? '')}
                   className="flex-1"
                   placeholder={t('admin.url')}
                 />

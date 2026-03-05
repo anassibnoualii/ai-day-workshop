@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { Team } from '../../types'
-import type { CardDefinition } from '../../types'
 import { CARD_CATALOG } from '../../lib/cards'
-import pb from '../../lib/pocketbase'
+import { revealCard } from '../../services/cardService'
 import ChallengeCard from '../shared/ChallengeCard'
 import Card from '../shared/Card'
 import Button from '../shared/Button'
@@ -47,30 +46,12 @@ export default function CardDistributor({ teams }: Props) {
   const selectedCardDef = CARD_CATALOG.find((c) => c.id === selectedCard)
   const selectedTeamObj = teams.find((t) => t.id === selectedTeam)
 
-  const reveal = async () => {
+  const handleReveal = async () => {
     if (!selectedTeam || !selectedCard) return
     const card = CARD_CATALOG.find((c) => c.id === selectedCard)
     if (!card) return
 
-    const existing = await pb.collection('challenge_cards').getFullList({
-      filter: `team_id="${selectedTeam}" && status="active"`,
-    })
-    for (const rec of existing) {
-      await pb.collection('challenge_cards').update(rec.id, { status: 'completed' })
-    }
-
-    await pb.collection('challenge_cards').create({
-      team_id: selectedTeam,
-      card_id: card.id,
-      color: card.color,
-      points: card.points,
-      title_fr: card.title_fr,
-      title_en: card.title_en,
-      mission_fr: card.mission_fr,
-      mission_en: card.mission_en,
-      status: 'active',
-      revealed_at: new Date().toISOString(),
-    })
+    await revealCard(selectedTeam, card)
 
     setRevealed(true)
     setTimeout(() => setRevealed(false), 2500)
@@ -93,7 +74,7 @@ export default function CardDistributor({ teams }: Props) {
               <option key={team.id} value={team.id}>{team.emoji} {team.name}</option>
             ))}
           </Select>
-          <Button onClick={reveal} disabled={!selectedTeam || !selectedCard} className="px-8">
+          <Button onClick={handleReveal} disabled={!selectedTeam || !selectedCard} className="px-8">
             {t('card.reveal')}
           </Button>
         </div>

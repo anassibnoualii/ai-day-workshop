@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { Team } from '../../types'
-import pb from '../../lib/pocketbase'
+import { updateTeamScore, createTeam, deleteTeam } from '../../services/teamService'
 import Card from '../shared/Card'
 import Button from '../shared/Button'
 import Input from '../shared/Input'
@@ -19,24 +19,15 @@ export default function ScoreboardManager({ teams }: Props) {
 
   const addPoints = async (team: Team, delta: number) => {
     if (delta === 0 || isNaN(delta)) return
-    await pb.collection('teams').update(team.id, { score: team.score + delta })
+    await updateTeamScore(team, delta)
     setPointInputs((prev) => ({ ...prev, [team.id]: '' }))
   }
 
-  const addTeam = async () => {
+  const handleAddTeam = async () => {
     if (!newName.trim()) return
-    await pb.collection('teams').create({
-      name: newName.trim(),
-      emoji: newEmoji || '\u{2B50}',
-      slogan: '',
-      score: 0,
-    })
+    await createTeam(newName.trim(), newEmoji)
     setNewName('')
     setNewEmoji('')
-  }
-
-  const removeTeam = async (id: string) => {
-    await pb.collection('teams').delete(id)
   }
 
   const getInputValue = (teamId: string) => pointInputs[teamId] ?? ''
@@ -104,7 +95,7 @@ export default function ScoreboardManager({ teams }: Props) {
                     </button>
                   ))}
                 </div>
-                <button onClick={() => removeTeam(team.id)} className="text-card-red text-xs hover:underline transition">
+                <button onClick={() => deleteTeam(team.id)} className="text-card-red text-xs hover:underline transition">
                   {t('score.removeTeam')}
                 </button>
               </div>
@@ -127,7 +118,7 @@ export default function ScoreboardManager({ teams }: Props) {
           placeholder={t('score.addTeam')}
           className="flex-1 bg-white"
         />
-        <Button onClick={addTeam}>+</Button>
+        <Button onClick={handleAddTeam}>+</Button>
       </div>
     </Card>
   )

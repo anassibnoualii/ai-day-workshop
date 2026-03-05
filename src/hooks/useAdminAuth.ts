@@ -1,14 +1,14 @@
 import { useState, useCallback } from 'react'
-import pb from '../lib/pocketbase'
+import * as authService from '../services/authService'
 
 export function useAdminAuth() {
-  const [isAuthenticated, setIsAuthenticated] = useState(pb.authStore.isValid)
+  const [isAuthenticated, setIsAuthenticated] = useState(authService.isAuthenticated())
   const [error, setError] = useState('')
 
   const login = useCallback(async (email: string, password: string) => {
     try {
       setError('')
-      await pb.collection('_superusers').authWithPassword(email, password)
+      await authService.login(email, password)
       setIsAuthenticated(true)
     } catch {
       setError('Invalid credentials')
@@ -17,7 +17,7 @@ export function useAdminAuth() {
   }, [])
 
   const logout = useCallback(() => {
-    pb.authStore.clear()
+    authService.logout()
     setIsAuthenticated(false)
   }, [])
 

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import type { Workshop, EventState } from '../../types'
-import pb from '../../lib/pocketbase'
+import { updateWorkshopStatuses } from '../../services/workshopService'
+import { activateWorkshop } from '../../services/eventStateService'
 import Card from '../shared/Card'
 import Button from '../shared/Button'
 
@@ -16,19 +17,8 @@ export default function WorkshopActivator({ workshops, eventState }: Props) {
 
   const activate = async (workshop: Workshop) => {
     if (!eventState) return
-    for (const w of workshops) {
-      const newStatus = w.id === workshop.id ? 'active' : w.order < workshop.order ? 'done' : 'pending'
-      if (w.status !== newStatus) {
-        await pb.collection('workshops').update(w.id, { status: newStatus })
-      }
-    }
-    await pb.collection('event_state').update(eventState.id, {
-      active_workshop_id: workshop.id,
-      timer_duration_seconds: workshop.duration,
-      timer_started_at: Math.floor(Date.now() / 1000),
-      timer_running: true,
-      timer_paused_remaining: null,
-    })
+    await updateWorkshopStatuses(workshops, workshop)
+    await activateWorkshop(eventState.id, workshop.id, workshop.duration)
   }
 
   return (

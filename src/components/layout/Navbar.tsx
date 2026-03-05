@@ -1,12 +1,12 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import LanguageToggle from './LanguageToggle'
-import pb from '../../lib/pocketbase'
+import { isAuthenticated } from '../../services/authService'
 
 export default function Navbar() {
   const { t } = useTranslation()
   const { pathname } = useLocation()
-  const isAdmin = pb.authStore.isValid
+  const isAdmin = isAuthenticated()
 
   const links = [
     { to: '/', label: t('nav.home') },
