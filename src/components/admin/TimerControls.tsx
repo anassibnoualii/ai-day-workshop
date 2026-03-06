@@ -32,7 +32,7 @@ export default function TimerControls({ eventState }: Props) {
 
   return (
     <Card className="flex flex-col items-center">
-      <h3 className="font-display font-bold text-prussian mb-6 self-start">Timer</h3>
+      <h3 className="font-display font-bold text-prussian mb-6 self-start">{t('timer.title')}</h3>
       <div className={`font-mono text-6xl font-bold tabular-nums mb-6 transition-all duration-500 ${isLow ? 'text-card-red' : isRunning ? 'text-sushi animate-glow' : 'text-prussian/30'}`}>
         {formatted}
       </div>

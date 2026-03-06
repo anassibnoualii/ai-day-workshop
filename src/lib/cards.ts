@@ -34,8 +34,8 @@ export const CARD_CATALOG: CardDefinition[] = [
     points: 5,
     title_fr: 'Agent Expert Metier',
     title_en: 'Business Expert Agent',
-    mission_fr: "Transformez l'agent en expert technique Contoso avec un role precis, un ton expert, des citations de sources et des escalades appropriees.",
-    mission_en: 'Transform the agent into a Contoso technical expert with a precise role, expert tone, source citations, and appropriate escalations.',
+    mission_fr: "Transformez l'agent en expert technique Use Case X avec un role precis, un ton expert, des citations de sources et des escalades appropriees.",
+    mission_en: 'Transform the agent into a Use Case X technical expert with a precise role, expert tone, source citations, and appropriate escalations.',
   },
   {
     id: 'carte5',
@@ -106,8 +106,8 @@ export const CARD_CATALOG: CardDefinition[] = [
     points: 1,
     title_fr: 'Exemple Concret Obligatoire',
     title_en: 'Mandatory Concrete Example',
-    mission_fr: "Chaque reponse doit inclure un exemple concret avec un produit Contoso. Testez avec une question sur la garantie.",
-    mission_en: 'Every response must include a concrete example with a Contoso product. Test with a warranty question.',
+    mission_fr: "Chaque reponse doit inclure un exemple concret avec un produit Use Case X. Testez avec une question sur la garantie.",
+    mission_en: 'Every response must include a concrete example with a Use Case X product. Test with a warranty question.',
   },
   {
     id: 'joker',

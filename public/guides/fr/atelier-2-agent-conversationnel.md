@@ -1,7 +1,7 @@
 # Atelier 2 — Agent Conversationnel
 
 ## Objectif
-Transformer votre agent declaratif en un **agent conversationnel intelligent** en ajoutant des sources de connaissance dans **Microsoft Copilot Studio**. Votre agent pourra repondre a des questions basees sur des documents reels de Contoso.
+Transformer votre agent declaratif en un **agent conversationnel intelligent** en ajoutant des sources de connaissance dans **Microsoft Copilot Studio**. Votre agent pourra repondre a des questions basees sur des documents reels.
 
 ---
 
@@ -23,7 +23,7 @@ Transformer votre agent declaratif en un **agent conversationnel intelligent** e
 1. Dans le menu lateral, cliquez sur **"Connaissances"** (Knowledge)
 2. Cliquez sur **"+ Ajouter une connaissance"**
 3. Selectionnez **"SharePoint"** comme type de source
-4. Entrez l'URL du site SharePoint Contoso fourni par le facilitateur
+4. Entrez l'URL du site SharePoint fourni par le facilitateur
 5. Selectionnez le dossier ou la bibliotheque de documents
 6. Cliquez sur **"Ajouter"** et attendez l'indexation
 
@@ -35,7 +35,7 @@ Transformer votre agent declaratif en un **agent conversationnel intelligent** e
 
 1. Retournez dans **"Connaissances"** > **"+ Ajouter"**
 2. Selectionnez **"Fichiers"** comme type
-3. Uploadez le document **"Politique de retour Contoso.pdf"** fourni
+3. Uploadez le document **"Politique de retour.pdf"** fourni
 4. Attendez que le statut passe a **"Ready"** (pret)
 
 ---
@@ -44,7 +44,7 @@ Transformer votre agent declaratif en un **agent conversationnel intelligent** e
 
 1. Dans **"Connaissances"** > **"+ Ajouter"**
 2. Selectionnez **"Site web"** comme type
-3. Entrez l'URL de la page produits Contoso :
+3. Entrez l'URL de la page produits :
    - URL fournie par le facilitateur
 4. Configurez la profondeur de crawl a **1 page**
 5. Cliquez sur **"Ajouter"**
@@ -77,7 +77,7 @@ Transformer votre agent declaratif en un **agent conversationnel intelligent** e
 2. Posez des questions qui necessitent les sources :
    - "Quelle est la politique de retour pour les appareils electroniques ?" (document PDF)
    - "Quels produits sont en promotion ?" (site web)
-   - "Ou se trouvent les bureaux de Contoso ?" (SharePoint)
+   - "Ou se trouvent les bureaux de l'entreprise ?" (SharePoint)
 3. Verifiez que l'agent cite ses sources
 4. Testez avec une question hors-sources pour verifier le grounding
 

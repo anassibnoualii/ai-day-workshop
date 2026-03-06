@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import type { Team } from '../../types'
 
-const medals = ['', '', '']
+const medals = ['\u{1F947}', '\u{1F948}', '\u{1F949}']
 const rankBg = ['bg-card-orange/10 border-card-orange/20', 'bg-surface border-surface-dark', 'bg-surface border-surface-dark']
 
 interface Props {

@@ -1,7 +1,7 @@
 # Atelier 1 — Agent Declaratif
 
 ## Objectif
-Creer votre premier agent IA declaratif pour Contoso en utilisant **Microsoft Copilot Agent Builder** dans Microsoft 365. A la fin de cet atelier, votre equipe aura un agent fonctionnel capable de repondre aux questions des clients Contoso.
+Creer votre premier agent IA declaratif pour votre cas d'usage en utilisant **Microsoft Copilot Agent Builder** dans Microsoft 365. A la fin de cet atelier, votre equipe aura un agent fonctionnel capable de repondre aux questions des clients.
 
 ---
 
@@ -20,9 +20,9 @@ Creer votre premier agent IA declaratif pour Contoso en utilisant **Microsoft Co
 
 ## Etape 2 : Configurer les informations de base
 
-1. **Nom de l'agent** : Donnez un nom creatif a votre agent (ex: "Contoso Support Pro")
+1. **Nom de l'agent** : Donnez un nom creatif a votre agent (ex: "Support Pro Agent")
 2. **Description** : Decrivez brievement le role de l'agent
-   - Exemple : *"Agent de support client pour Contoso Corporation. Repond aux questions sur les produits, les politiques de retour et les commandes."*
+   - Exemple : *"Agent de support client pour votre cas d'usage. Repond aux questions sur les produits, les politiques de retour et les commandes."*
 3. **Icone** : Choisissez une icone ou uploadez un logo
 
 ![Configurez le nom, la description et l'icone de votre agent](/guides/screenshots/workshop-1/step2-configure-agent.svg)
@@ -37,7 +37,7 @@ C'est la partie la plus importante ! Les instructions systeme definissent le com
 2. Utilisez le template suivant comme base :
 
 ```
-Tu es un agent de support client pour Contoso Corporation.
+Tu es un agent de support client pour votre cas d'usage.
 
 ## Role
 - Tu assistes les clients avec leurs questions sur les produits, commandes et politiques.
@@ -63,7 +63,7 @@ Tu es un agent de support client pour Contoso Corporation.
 
 1. Utilisez le panneau de **test** a droite de l'ecran
 2. Posez des questions test :
-   - "Quelle est la politique de retour de Contoso ?"
+   - "Quelle est la politique de retour ?"
    - "Comment suivre ma commande ?"
    - "Quels sont vos produits les plus populaires ?"
 3. Observez les reponses et ajustez les instructions si necessaire
@@ -86,7 +86,7 @@ Tu es un agent de support client pour Contoso Corporation.
 |---------|-------------|
 | Agent cree | L'agent est cree et accessible dans Copilot |
 | Instructions claires | Les instructions systeme sont structurees et completes |
-| Reponses coherentes | L'agent repond correctement aux questions basiques de Contoso |
+| Reponses coherentes | L'agent repond correctement aux questions basiques |
 | Gestion des limites | L'agent gere les questions hors-sujet de facon appropriee |
 
 ---

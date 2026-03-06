@@ -17,3 +17,20 @@ export async function createTeam(name: string, emoji: string) {
 export async function deleteTeam(id: string) {
   await pb.collection('teams').delete(id)
 }
+
+export async function deleteAllTeams() {
+  const records = await pb.collection('teams').getFullList<Team>({
+    requestKey: 'deleteAllTeams',
+  })
+  for (const r of records) {
+    await pb.collection('teams').delete(r.id, { requestKey: null })
+  }
+}
+
+export async function resetAllScores(teams: Team[]) {
+  for (const t of teams) {
+    if (t.score !== 0) {
+      await pb.collection('teams').update(t.id, { score: 0 })
+    }
+  }
+}

@@ -7,13 +7,13 @@
   },
   "hero": {
     "title": "Build & Scale an AI Agent",
-    "subtitle": "Une journee pour construire, tester et deployer l'agent IA de Contoso Corporation avec Microsoft Copilot Studio et Copilot Agent Builder.",
-    "date": "Mars 2026 - Alithya Montreal",
+    "subtitle": "Une journee pour construire, tester et deployer l'agent IA de votre cas d'usage avec Microsoft Copilot Studio et Copilot Agent Builder.",
+    "date": "Avril 2026 - Alithya Maroc",
     "cta": "Suivre la journee en direct"
   },
   "about": {
     "title": "A propos de la journee",
-    "text": "Bienvenue dans l'Agent in a Day d'Alithya — une experience immersive et gamifiee inspiree du workshop officiel Microsoft. En equipe, vous construirez un vrai agent de support client pour Contoso Corporation, de la conversation de base jusqu'a l'automatisation autonome complete."
+    "text": "Bienvenue dans l'Agent in a Day d'Alithya — une experience immersive et gamifiee inspiree du workshop officiel Microsoft. En equipe, vous construirez un vrai agent de support client pour votre cas d'usage, de la conversation de base jusqu'a l'automatisation autonome complete."
   },
   "programme": {
     "title": "Programme de la journee",
@@ -32,16 +32,16 @@
   },
   "deliverables": {
     "title": "Ce que vous allez construire",
-    "d1_title": "Agent Conversationnel Contoso",
+    "d1_title": "Agent Conversationnel Cas d'Usage",
     "d1_desc": "Agent de support client cree dans Copilot Agent Builder et configure dans Copilot Studio.",
     "d2_title": "3 Sources de Connaissance Connectees",
-    "d2_desc": "SharePoint interne Contoso + document de politique + page web externe — toutes en statut Ready.",
+    "d2_desc": "SharePoint interne + document de politique + page web externe — toutes en statut Ready.",
     "d3_title": "Custom Prompt Tool",
-    "d3_desc": "Template de prompt structure pour generer les confirmations d'annulation de commande Contoso.",
+    "d3_desc": "Template de prompt structure pour generer les confirmations d'annulation de commande.",
     "d4_title": "Agent Flow Autonome",
     "d4_desc": "Flow complet : demande client vers SharePoint vers email de confirmation automatique. 0 intervention humaine.",
     "d5_title": "Pitch Structure 2 Minutes",
-    "d5_desc": "Presentation : probleme Contoso, solution agent, ROI."
+    "d5_desc": "Presentation : probleme metier, solution agent, ROI."
   },
   "gamification": {
     "title": "Gamification",
@@ -70,7 +70,8 @@
     "start": "Demarrer",
     "pause": "Pause",
     "reset": "Reinitialiser",
-    "duration": "Duree (min)"
+    "duration": "Duree (min)",
+    "title": "Chronometre"
   },
   "score": {
     "scoreboard": "Classement",
@@ -78,7 +79,11 @@
     "yourTeam": "Votre equipe",
     "addTeam": "Ajouter equipe",
     "addPoints": "Ajouter",
-    "removeTeam": "Supprimer"
+    "removeTeam": "Supprimer",
+    "label": "Libelle",
+    "emoji": "Emoji",
+    "resetAll": "Tout reinitialiser",
+    "confirmReset": "Supprimer toutes les equipes, scores et historique ?"
   },
   "card": {
     "none": "Aucune carte active — en attente du facilitateur",

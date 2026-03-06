@@ -1,7 +1,7 @@
 # Workshop 2 — Conversational Agent
 
 ## Objective
-Transform your declarative agent into an **intelligent conversational agent** by adding knowledge sources in **Microsoft Copilot Studio**. Your agent will be able to answer questions based on real Contoso documents.
+Transform your declarative agent into an **intelligent conversational agent** by adding knowledge sources in **Microsoft Copilot Studio**. Your agent will be able to answer questions based on real documents.
 
 ---
 
@@ -23,7 +23,7 @@ Transform your declarative agent into an **intelligent conversational agent** by
 1. In the side menu, click **"Knowledge"**
 2. Click **"+ Add knowledge"**
 3. Select **"SharePoint"** as the source type
-4. Enter the Contoso SharePoint site URL provided by the facilitator
+4. Enter the SharePoint site URL provided by the facilitator
 5. Select the document folder or library
 6. Click **"Add"** and wait for indexing
 
@@ -35,7 +35,7 @@ Transform your declarative agent into an **intelligent conversational agent** by
 
 1. Go back to **"Knowledge"** > **"+ Add"**
 2. Select **"Files"** as the type
-3. Upload the **"Contoso Return Policy.pdf"** document provided
+3. Upload the **"Return Policy.pdf"** document provided
 4. Wait for the status to change to **"Ready"**
 
 ---
@@ -44,7 +44,7 @@ Transform your declarative agent into an **intelligent conversational agent** by
 
 1. In **"Knowledge"** > **"+ Add"**
 2. Select **"Website"** as the type
-3. Enter the Contoso products page URL:
+3. Enter the products page URL:
    - URL provided by the facilitator
 4. Set the crawl depth to **1 page**
 5. Click **"Add"**
@@ -77,7 +77,7 @@ Transform your declarative agent into an **intelligent conversational agent** by
 2. Ask questions that require the sources:
    - "What is the return policy for electronics?" (PDF document)
    - "What products are on sale?" (website)
-   - "Where are Contoso's offices?" (SharePoint)
+   - "Where are the company offices?" (SharePoint)
 3. Verify the agent cites its sources
 4. Test with an out-of-scope question to verify grounding
 

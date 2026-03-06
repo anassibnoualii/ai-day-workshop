@@ -5,6 +5,7 @@ import { useEventState } from '../hooks/useEventState'
 import { useWorkshops } from '../hooks/useWorkshops'
 import { useTeams } from '../hooks/useTeams'
 import { useConfig } from '../hooks/useConfig'
+import { useScoreHistory } from '../hooks/useScoreHistory'
 import AdminLogin from '../components/admin/AdminLogin'
 import WorkshopActivator from '../components/admin/WorkshopActivator'
 import TimerControls from '../components/admin/TimerControls'
@@ -38,6 +39,7 @@ export default function AdminPage() {
   const workshops = useWorkshops(isAuthenticated)
   const teams = useTeams(isAuthenticated)
   const config = useConfig(isAuthenticated)
+  const scoreHistory = useScoreHistory(isAuthenticated)
 
   if (!isAuthenticated) {
     return <AdminLogin onLogin={login} error={error} />
@@ -84,7 +86,7 @@ export default function AdminPage() {
         )}
 
         {activeTab === 'scores' && (
-          <ScoreboardManager teams={teams} />
+          <ScoreboardManager teams={teams} scoreHistory={scoreHistory} />
         )}
 
         {activeTab === 'cards' && (

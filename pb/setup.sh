@@ -34,7 +34,7 @@ ID_FIELD='{"name":"id","type":"text","system":true,"required":true,"primaryKey":
 
 echo ""
 echo "Step 3: Creating collections..."
-for name in event_state workshops teams challenge_cards config; do
+for name in event_state workshops teams challenge_cards config score_history; do
   echo "  $name"
   curl -s -X POST "$PB_URL/api/collections" -H "$H" -H "$C" \
     -d "{\"name\":\"$name\",\"type\":\"base\",\"listRule\":\"\",\"viewRule\":\"\",\"createRule\":\"\",\"updateRule\":\"\",\"deleteRule\":\"\"}" > /dev/null 2>&1 || true
@@ -83,6 +83,13 @@ curl -s -X PATCH "$PB_URL/api/collections/challenge_cards" -H "$H" -H "$C" -d "{
   {\"name\":\"mission_en\",\"type\":\"text\"},
   {\"name\":\"status\",\"type\":\"text\"},
   {\"name\":\"revealed_at\",\"type\":\"date\"}
+],\"listRule\":\"\",\"viewRule\":\"\",\"createRule\":\"\",\"updateRule\":\"\",\"deleteRule\":\"\"}" > /dev/null
+
+echo "  score_history"
+curl -s -X PATCH "$PB_URL/api/collections/score_history" -H "$H" -H "$C" -d "{\"fields\":[$ID_FIELD,
+  {\"name\":\"team_id\",\"type\":\"text\",\"required\":true},
+  {\"name\":\"delta\",\"type\":\"number\",\"required\":true},
+  {\"name\":\"label\",\"type\":\"text\"}
 ],\"listRule\":\"\",\"viewRule\":\"\",\"createRule\":\"\",\"updateRule\":\"\",\"deleteRule\":\"\"}" > /dev/null
 
 echo "  config"
@@ -140,7 +147,7 @@ fi
 
 COUNT=$(collection_count "config")
 if [ "${COUNT:-0}" = "0" ]; then
-  rec "config" '{"feedback_url":"https://forms.office.com/example","feedback_enabled":false,"global_docs":[{"label":"Slides de la journee","url":"https://contoso.sharepoint.com/slides"},{"label":"Guide Copilot Studio","url":"https://contoso.sharepoint.com/guides"},{"label":"Lab GitHub Repository","url":"https://github.com/alithya/agentday"},{"label":"Contoso Refund Policy","url":"https://contoso.sharepoint.com/policy"},{"label":"Contoso Product Catalog","url":"https://contoso.sharepoint.com/catalog"}]}'
+  rec "config" '{"feedback_url":"https://forms.office.com/example","feedback_enabled":false,"global_docs":[{"label":"Slides de la journee","url":"https://example.sharepoint.com/slides"},{"label":"Guide Copilot Studio","url":"https://example.sharepoint.com/guides"},{"label":"Lab GitHub Repository","url":"https://github.com/alithya/agentday"},{"label":"Refund Policy","url":"https://example.sharepoint.com/policy"},{"label":"Product Catalog","url":"https://example.sharepoint.com/catalog"}]}'
   echo "  config: seeded"
 else
   echo "  config: exists ($COUNT)"

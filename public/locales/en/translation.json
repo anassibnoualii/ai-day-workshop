@@ -7,13 +7,13 @@
   },
   "hero": {
     "title": "Build & Scale an AI Agent",
-    "subtitle": "A full day to build, test, and deploy Contoso Corporation's AI agent using Microsoft Copilot Studio and Copilot Agent Builder.",
-    "date": "March 2026 - Alithya Montreal",
+    "subtitle": "A full day to build, test, and deploy your use case AI agent using Microsoft Copilot Studio and Copilot Agent Builder.",
+    "date": "April 2026 - Alithya Morocco",
     "cta": "Follow the day live"
   },
   "about": {
     "title": "About the Day",
-    "text": "Welcome to Alithya's Agent in a Day — an immersive, gamified experience inspired by the official Microsoft workshop. As a team, you'll build a real customer support agent for Contoso Corporation, from basic conversation to full autonomous automation."
+    "text": "Welcome to Alithya's Agent in a Day — an immersive, gamified experience inspired by the official Microsoft workshop. As a team, you'll build a real customer support agent for your use case, from basic conversation to full autonomous automation."
   },
   "programme": {
     "title": "Day Programme",
@@ -32,16 +32,16 @@
   },
   "deliverables": {
     "title": "What You'll Build",
-    "d1_title": "Contoso Conversational Agent",
+    "d1_title": "Use Case Conversational Agent",
     "d1_desc": "Customer support agent created in Copilot Agent Builder and configured in Copilot Studio.",
     "d2_title": "3 Connected Knowledge Sources",
-    "d2_desc": "Internal Contoso SharePoint + policy document + external webpage — all Ready status.",
+    "d2_desc": "Internal internal SharePoint + policy document + external webpage — all Ready status.",
     "d3_title": "Custom Prompt Tool",
-    "d3_desc": "Structured prompt template to generate Contoso order cancellation confirmations.",
+    "d3_desc": "Structured prompt template to generate order cancellation confirmations.",
     "d4_title": "Autonomous Agent Flow",
     "d4_desc": "Complete flow: customer request to SharePoint to automatic confirmation email. 0 human intervention.",
     "d5_title": "2-Minute Structured Pitch",
-    "d5_desc": "Presentation: Contoso problem, agent solution, ROI."
+    "d5_desc": "Presentation: business problem, agent solution, ROI."
   },
   "gamification": {
     "title": "Gamification",
@@ -70,7 +70,8 @@
     "start": "Start",
     "pause": "Pause",
     "reset": "Reset",
-    "duration": "Duration (min)"
+    "duration": "Duration (min)",
+    "title": "Timer"
   },
   "score": {
     "scoreboard": "Scoreboard",
@@ -78,7 +79,11 @@
     "yourTeam": "Your team",
     "addTeam": "Add team",
     "addPoints": "Add",
-    "removeTeam": "Remove"
+    "removeTeam": "Remove",
+    "label": "Label",
+    "emoji": "Emoji",
+    "resetAll": "Reset all",
+    "confirmReset": "Delete all teams, scores and history?"
   },
   "card": {
     "none": "No active card — waiting for facilitator",

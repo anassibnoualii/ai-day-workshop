@@ -52,6 +52,14 @@ export interface Config {
   global_docs: GlobalDoc[]
 }
 
+export interface ScoreHistory {
+  id: string
+  team_id: string
+  delta: number
+  label: string
+  created: string
+}
+
 export interface CardDefinition {
   id: string
   color: 'red' | 'orange' | 'green' | 'purple'

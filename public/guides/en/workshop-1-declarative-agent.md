@@ -1,7 +1,7 @@
 # Workshop 1 — Declarative Agent
 
 ## Objective
-Create your first declarative AI agent for Contoso using **Microsoft Copilot Agent Builder** in Microsoft 365. By the end of this workshop, your team will have a functional agent capable of answering Contoso customer questions.
+Create your first declarative AI agent for your use case using **Microsoft Copilot Agent Builder** in Microsoft 365. By the end of this workshop, your team will have a functional agent capable of answering customer questions.
 
 ---
 
@@ -20,9 +20,9 @@ Create your first declarative AI agent for Contoso using **Microsoft Copilot Age
 
 ## Step 2: Configure Basic Information
 
-1. **Agent Name**: Give your agent a creative name (e.g., "Contoso Support Pro")
+1. **Agent Name**: Give your agent a creative name (e.g., "Support Pro Agent")
 2. **Description**: Briefly describe the agent's role
-   - Example: *"Customer support agent for Contoso Corporation. Answers questions about products, return policies, and orders."*
+   - Example: *"Customer support agent for your use case Corporation. Answers questions about products, return policies, and orders."*
 3. **Icon**: Choose an icon or upload a logo
 
 ![Configure your agent name, description and icon](/guides/screenshots/workshop-1/step2-configure-agent.svg)
@@ -37,7 +37,7 @@ This is the most important part! System instructions define how your agent behav
 2. Use the following template as a starting point:
 
 ```
-You are a customer support agent for Contoso Corporation.
+You are a customer support agent for your use case Corporation.
 
 ## Role
 - You assist customers with questions about products, orders, and policies.
@@ -63,7 +63,7 @@ You are a customer support agent for Contoso Corporation.
 
 1. Use the **test panel** on the right side of the screen
 2. Ask test questions:
-   - "What is Contoso's return policy?"
+   - "What is the return policy?"
    - "How can I track my order?"
    - "What are your most popular products?"
 3. Observe the responses and adjust instructions as needed
@@ -86,7 +86,7 @@ You are a customer support agent for Contoso Corporation.
 |----------|-------------|
 | Agent created | The agent is created and accessible in Copilot |
 | Clear instructions | System instructions are structured and complete |
-| Coherent responses | The agent correctly answers basic Contoso questions |
+| Coherent responses | The agent correctly answers basic questions |
 | Boundary handling | The agent handles off-topic questions appropriately |
 
 ---
