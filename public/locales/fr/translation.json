@@ -125,7 +125,14 @@
     "tabTimeline": "Timeline & Chrono",
     "tabScores": "Scores & Equipes",
     "tabCards": "Cartes Defi",
-    "tabSettings": "Docs & Parametres"
+    "tabSettings": "Docs & Parametres",
+    "tabParticipants": "Participants",
+    "participants": "Participants",
+    "pendingParticipants": "En attente",
+    "approvedParticipants": "Valides",
+    "approve": "Valider",
+    "revoke": "Revoquer",
+    "noParticipants": "Aucun participant inscrit"
   },
   "rules": {
     "title": "Regles & Cartes de Defi",
@@ -158,6 +165,16 @@
     "award3_desc": "Cas d'usage le plus creatif ou inattendu",
     "award4_title": "Best Team Collaboration",
     "award4_desc": "Meilleure dynamique d'equipe"
+  },
+  "gate": {
+    "title": "Identification",
+    "inputLabel": "Votre identifiant",
+    "inputPlaceholder": "Nom, email, telephone...",
+    "submit": "Rejoindre",
+    "pendingTitle": "En attente de validation",
+    "pendingMessage": "Le facilitateur doit valider votre acces. Veuillez patienter.",
+    "alreadyPending": "Cet identifiant est en attente de validation par le facilitateur.",
+    "switchUser": "Utiliser un autre identifiant"
   },
   "live": {
     "title": "Journee en direct",

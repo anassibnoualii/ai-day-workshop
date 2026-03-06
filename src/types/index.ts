@@ -63,6 +63,13 @@ export interface ScoreHistory {
   created: string
 }
 
+export interface Participant {
+  id: string
+  username: string
+  validated: boolean
+  created: string
+}
+
 export interface CardDefinition {
   id: string
   color: 'red' | 'orange' | 'green' | 'purple'

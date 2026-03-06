@@ -6,6 +6,7 @@ import { useWorkshops } from '../hooks/useWorkshops'
 import { useTeams } from '../hooks/useTeams'
 import { useConfig } from '../hooks/useConfig'
 import { useScoreHistory } from '../hooks/useScoreHistory'
+import { useParticipants } from '../hooks/useParticipants'
 import Button from '../components/shared/Button'
 import AdminLogin from '../components/admin/AdminLogin'
 import WorkshopActivator from '../components/admin/WorkshopActivator'
@@ -14,11 +15,13 @@ import ScoreboardManager from '../components/admin/ScoreboardManager'
 import CardDistributor from '../components/admin/CardDistributor'
 import LinkManager from '../components/admin/LinkManager'
 import FeedbackUrlConfig from '../components/admin/FeedbackUrlConfig'
+import ParticipantManager from '../components/admin/ParticipantManager'
 
 const TABS = [
   { id: 'timeline', icon: '\u23F1\uFE0F', key: 'admin.tabTimeline' },
   { id: 'scores', icon: '\u{1F3C6}', key: 'admin.tabScores' },
   { id: 'cards', icon: '\u{1F0CF}', key: 'admin.tabCards' },
+  { id: 'participants', icon: '\u{1F465}', key: 'admin.tabParticipants' },
   { id: 'settings', icon: '\u2699\uFE0F', key: 'admin.tabSettings' },
 ] as const
 
@@ -42,6 +45,7 @@ export default function AdminPage() {
   const teams = useTeams(isAuthenticated)
   const config = useConfig(isAuthenticated)
   const scoreHistory = useScoreHistory(isAuthenticated)
+  const participants = useParticipants(isAuthenticated)
 
   if (!isAuthenticated) {
     return <AdminLogin onLogin={login} error={error} />
@@ -92,6 +96,10 @@ export default function AdminPage() {
 
         {activeTab === 'cards' && (
           <CardDistributor teams={teams} />
+        )}
+
+        {activeTab === 'participants' && (
+          <ParticipantManager participants={participants} />
         )}
 
         {activeTab === 'settings' && (

@@ -8,6 +8,7 @@ import AdminPage from './pages/AdminPage'
 import RulesPage from './pages/RulesPage'
 import FeedbackRedirect from './pages/FeedbackRedirect'
 import ScoreboardPage from './pages/ScoreboardPage'
+import ParticipantGate from './components/shared/ParticipantGate'
 import { ToastProvider } from './components/shared/Toast'
 
 export default function App() {
@@ -19,12 +20,12 @@ export default function App() {
         <main className="flex-1">
           <Suspense fallback={<div className="flex items-center justify-center min-h-[60vh] text-slate-gray">Loading...</div>}>
             <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/live" element={<LivePage />} />
+              <Route path="/" element={<ParticipantGate><HomePage /></ParticipantGate>} />
+              <Route path="/live" element={<ParticipantGate><LivePage /></ParticipantGate>} />
               <Route path="/admin" element={<AdminPage />} />
-              <Route path="/rules" element={<RulesPage />} />
-              <Route path="/scoreboard" element={<ScoreboardPage />} />
-              <Route path="/feedback" element={<FeedbackRedirect />} />
+              <Route path="/rules" element={<ParticipantGate><RulesPage /></ParticipantGate>} />
+              <Route path="/scoreboard" element={<ParticipantGate><ScoreboardPage /></ParticipantGate>} />
+              <Route path="/feedback" element={<ParticipantGate><FeedbackRedirect /></ParticipantGate>} />
             </Routes>
           </Suspense>
         </main>

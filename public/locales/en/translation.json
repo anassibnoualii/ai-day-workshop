@@ -125,7 +125,14 @@
     "tabTimeline": "Timeline & Timer",
     "tabScores": "Scores & Teams",
     "tabCards": "Challenge Cards",
-    "tabSettings": "Docs & Settings"
+    "tabSettings": "Docs & Settings",
+    "tabParticipants": "Participants",
+    "participants": "Participants",
+    "pendingParticipants": "Pending",
+    "approvedParticipants": "Approved",
+    "approve": "Approve",
+    "revoke": "Revoke",
+    "noParticipants": "No participants registered"
   },
   "rules": {
     "title": "Rules & Challenge Cards",
@@ -158,6 +165,16 @@
     "award3_desc": "Most creative or unexpected use case",
     "award4_title": "Best Team Collaboration",
     "award4_desc": "Best team dynamics"
+  },
+  "gate": {
+    "title": "Identification",
+    "inputLabel": "Your identifier",
+    "inputPlaceholder": "Name, email, phone...",
+    "submit": "Join",
+    "pendingTitle": "Pending validation",
+    "pendingMessage": "The facilitator must validate your access. Please wait.",
+    "alreadyPending": "This identifier is pending validation by the facilitator.",
+    "switchUser": "Use a different identifier"
   },
   "live": {
     "title": "Live Day",
