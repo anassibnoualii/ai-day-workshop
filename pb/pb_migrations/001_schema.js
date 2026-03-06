@@ -20,8 +20,9 @@ migrate((app) => {
         { name: "title_en", type: "text",   required: true },
         { name: "status",   type: "text",   required: true },
         { name: "duration", type: "number", required: true },
-        { name: "doc_url",  type: "url",    required: false },
-        { name: "order",    type: "number", required: true },
+        { name: "doc_url", type: "url",  required: false },
+        { name: "guides", type: "json", required: false },
+        { name: "order",  type: "number", required: true },
       ],
     },
     {

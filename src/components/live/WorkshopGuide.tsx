@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { Workshop } from '../../types'
-import { getGuideUrl } from '../../lib/guides'
+import { getGuideUrls } from '../../lib/guides'
 import SectionHeading from '../shared/SectionHeading'
 
 interface Props {
@@ -179,34 +179,35 @@ function inlineFormat(text: string): string {
 export default function WorkshopGuide({ workshop }: Props) {
   const { t, i18n } = useTranslation()
   const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
-  const [content, setContent] = useState<string | null>(null)
+  const [contents, setContents] = useState<string[]>([])
   const [loading, setLoading] = useState(false)
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(true)
 
-  const guideUrl = workshop ? getGuideUrl(workshop.order, lang) : null
+  const guideUrls = workshop ? getGuideUrls(workshop, lang) : []
+  const urlsKey = guideUrls.join(',')
 
   useEffect(() => {
-    if (!guideUrl) {
-      setContent(null)
+    if (guideUrls.length === 0) {
+      setContents([])
       return
     }
     setLoading(true)
-    fetch(guideUrl)
-      .then((r) => {
-        if (!r.ok) throw new Error('Not found')
-        return r.text()
-      })
-      .then((md) => {
-        setContent(md)
-        setLoading(false)
-      })
-      .catch(() => {
-        setContent(null)
-        setLoading(false)
-      })
-  }, [guideUrl])
+    Promise.all(
+      guideUrls.map((url) =>
+        fetch(url)
+          .then((r) => {
+            if (!r.ok) throw new Error('Not found')
+            return r.text()
+          })
+          .catch(() => null)
+      )
+    ).then((results) => {
+      setContents(results.filter((r): r is string => r !== null))
+      setLoading(false)
+    })
+  }, [urlsKey])
 
-  if (!guideUrl || (!content && !loading)) return null
+  if (guideUrls.length === 0 || (contents.length === 0 && !loading)) return null
 
   return (
     <div>
@@ -229,11 +230,16 @@ export default function WorkshopGuide({ workshop }: Props) {
           <div className="px-6 pb-6 border-t border-surface-dark/30">
             {loading ? (
               <div className="py-8 text-center text-slate-gray text-sm">{t('live.loading')}</div>
-            ) : content ? (
-              <div
-                className="prose-custom mt-4"
-                dangerouslySetInnerHTML={{ __html: renderMarkdown(content) }}
-              />
+            ) : contents.length > 0 ? (
+              <div className="mt-4 space-y-8">
+                {contents.map((md, idx) => (
+                  <div
+                    key={idx}
+                    className="prose-custom"
+                    dangerouslySetInnerHTML={{ __html: renderMarkdown(md) }}
+                  />
+                ))}
+              </div>
             ) : null}
           </div>
         )}

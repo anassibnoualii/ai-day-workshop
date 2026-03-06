@@ -15,7 +15,13 @@ export interface Workshop {
   status: 'done' | 'active' | 'pending'
   duration: number
   doc_url: string
+  guides: GuideEntry[]
   order: number
+}
+
+export interface GuideEntry {
+  fr: string
+  en: string
 }
 
 export interface Team {
