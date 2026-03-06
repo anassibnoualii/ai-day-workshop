@@ -11,6 +11,7 @@ export async function createTeam(name: string, emoji: string) {
     emoji: emoji || '\u{2B50}',
     slogan: '',
     score: 0,
+    members: [],
   })
 }
 
@@ -25,6 +26,14 @@ export async function deleteAllTeams() {
   for (const r of records) {
     await pb.collection('teams').delete(r.id, { requestKey: null })
   }
+}
+
+export async function updateTeamInfo(teamId: string, data: { name?: string; emoji?: string }) {
+  await pb.collection('teams').update(teamId, data)
+}
+
+export async function updateTeamMembers(teamId: string, members: string[]) {
+  await pb.collection('teams').update(teamId, { members })
 }
 
 export async function resetAllScores(teams: Team[]) {

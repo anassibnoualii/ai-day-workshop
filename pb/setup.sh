@@ -68,7 +68,8 @@ curl -s -X PATCH "$PB_URL/api/collections/teams" -H "$H" -H "$C" -d "{\"fields\"
   {\"name\":\"name\",\"type\":\"text\",\"required\":true},
   {\"name\":\"emoji\",\"type\":\"text\"},
   {\"name\":\"slogan\",\"type\":\"text\"},
-  {\"name\":\"score\",\"type\":\"number\"}
+  {\"name\":\"score\",\"type\":\"number\"},
+  {\"name\":\"members\",\"type\":\"json\"}
 ],\"listRule\":\"\",\"viewRule\":\"\",\"createRule\":\"\",\"updateRule\":\"\",\"deleteRule\":\"\"}" > /dev/null
 
 echo "  challenge_cards"

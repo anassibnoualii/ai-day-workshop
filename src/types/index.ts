@@ -24,6 +24,7 @@ export interface Team {
   emoji: string
   slogan: string
   score: number
+  members: string[]
 }
 
 export interface ChallengeCard {

@@ -82,6 +82,9 @@
     "removeTeam": "Remove",
     "label": "Label",
     "emoji": "Emoji",
+    "members": "Members",
+    "addMember": "Add member",
+    "memberName": "Member name",
     "resetAll": "Reset all",
     "confirmReset": "Delete all teams, scores and history?"
   },

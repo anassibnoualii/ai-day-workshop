@@ -6,6 +6,7 @@ import { useWorkshops } from '../hooks/useWorkshops'
 import { useTeams } from '../hooks/useTeams'
 import { useConfig } from '../hooks/useConfig'
 import { useScoreHistory } from '../hooks/useScoreHistory'
+import Button from '../components/shared/Button'
 import AdminLogin from '../components/admin/AdminLogin'
 import WorkshopActivator from '../components/admin/WorkshopActivator'
 import TimerControls from '../components/admin/TimerControls'
@@ -52,28 +53,27 @@ export default function AdminPage() {
           <div className="w-1.5 h-10 rounded-full bg-sushi" />
           <h1 className="font-display text-2xl md:text-3xl font-bold text-prussian">{t('admin.dashboard')}</h1>
         </div>
-        <button
-          onClick={logout}
-          className="text-sm text-slate-gray hover:text-card-red transition-colors px-4 py-2 rounded-lg hover:bg-card-red/5"
-        >
+        <Button variant="ghost" size="sm" onClick={logout} className="text-slate-gray hover:text-card-red hover:!bg-card-red/5">
           {t('admin.logout')}
-        </button>
+        </Button>
       </div>
 
       <div className="flex gap-1 mb-8 bg-surface rounded-2xl p-1.5">
         {TABS.map((tab) => (
-          <button
+          <Button
             key={tab.id}
+            variant="ghost"
+            size="sm"
             onClick={() => changeTab(tab.id)}
-            className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 ${
+            className={`flex-1 flex items-center justify-center gap-2 !px-4 !py-3 !rounded-xl text-sm font-semibold ${
               activeTab === tab.id
-                ? 'bg-prussian text-white shadow-md shadow-prussian/20'
-                : 'text-slate-gray hover:text-dark-slate hover:bg-white'
+                ? '!bg-prussian !text-white shadow-md shadow-prussian/20'
+                : '!text-slate-gray hover:!text-dark-slate hover:!bg-white'
             }`}
           >
             <span>{tab.icon}</span>
             <span className="hidden sm:inline">{t(tab.key)}</span>
-          </button>
+          </Button>
         ))}
       </div>
 

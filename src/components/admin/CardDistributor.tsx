@@ -12,19 +12,19 @@ const COLOR_FILTERS = ['all', 'red', 'orange', 'green', 'purple'] as const
 type ColorFilter = (typeof COLOR_FILTERS)[number]
 
 const filterStyles: Record<ColorFilter, string> = {
-  all: 'bg-prussian text-white',
-  red: 'bg-card-red text-white',
-  orange: 'bg-card-orange text-white',
-  green: 'bg-card-green text-white',
-  purple: 'bg-card-purple text-white',
+  all: '!bg-prussian !text-white',
+  red: '!bg-card-red !text-white',
+  orange: '!bg-card-orange !text-white',
+  green: '!bg-card-green !text-white',
+  purple: '!bg-card-purple !text-white',
 }
 
 const filterInactiveStyles: Record<ColorFilter, string> = {
-  all: 'text-prussian hover:bg-prussian/10',
-  red: 'text-card-red hover:bg-card-red/10',
-  orange: 'text-card-orange hover:bg-card-orange/10',
-  green: 'text-card-green hover:bg-card-green/10',
-  purple: 'text-card-purple hover:bg-card-purple/10',
+  all: '!bg-transparent !text-prussian hover:!bg-prussian/10',
+  red: '!bg-transparent !text-card-red hover:!bg-card-red/10',
+  orange: '!bg-transparent !text-card-orange hover:!bg-card-orange/10',
+  green: '!bg-transparent !text-card-green hover:!bg-card-green/10',
+  purple: '!bg-transparent !text-card-purple hover:!bg-card-purple/10',
 }
 
 interface Props {
@@ -102,15 +102,17 @@ export default function CardDistributor({ teams }: Props) {
 
         <div className="flex gap-1.5 mb-4 flex-wrap">
           {COLOR_FILTERS.map((filter) => (
-            <button
+            <Button
               key={filter}
+              variant="ghost"
+              size="sm"
               onClick={() => setColorFilter(filter)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide transition-all ${
+              className={`!px-3 !py-1.5 !rounded-lg text-xs font-bold uppercase tracking-wide ${
                 colorFilter === filter ? filterStyles[filter] : filterInactiveStyles[filter]
               }`}
             >
               {filter === 'all' ? t('card.allCards') : filter}
-            </button>
+            </Button>
           ))}
         </div>
 

@@ -49,7 +49,7 @@ export default function LinkManager({ config, workshops }: Props) {
             <div key={i} className="flex items-center gap-3 bg-surface rounded-xl px-4 py-3 text-sm border border-surface-dark/30">
               <span className="flex-1 truncate font-medium text-dark-slate">{doc.label}</span>
               <a href={doc.url} target="_blank" rel="noopener noreferrer" className="text-sushi text-xs hover:underline truncate max-w-48">{doc.url}</a>
-              <button onClick={() => handleRemoveGlobalDoc(i)} className="text-card-red text-sm hover:opacity-70 shrink-0 transition w-6 h-6 rounded-lg hover:bg-card-red/10 flex items-center justify-center">&times;</button>
+              <Button variant="ghost" size="sm" onClick={() => handleRemoveGlobalDoc(i)} className="text-card-red !bg-transparent hover:!bg-card-red/10 !w-6 !h-6 !px-0">&times;</Button>
             </div>
           ))}
         </div>

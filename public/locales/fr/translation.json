@@ -82,6 +82,9 @@
     "removeTeam": "Supprimer",
     "label": "Libelle",
     "emoji": "Emoji",
+    "members": "Membres",
+    "addMember": "Ajouter membre",
+    "memberName": "Nom du membre",
     "resetAll": "Tout reinitialiser",
     "confirmReset": "Supprimer toutes les equipes, scores et historique ?"
   },
