@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { Config } from '../../types'
 import { updateFeedbackUrl, toggleFeedbackEnabled } from '../../services/configService'
@@ -12,17 +12,15 @@ interface Props {
 
 export default function FeedbackUrlConfig({ config }: Props) {
   const { t } = useTranslation()
-  const [url, setUrl] = useState('')
-  const [enabled, setEnabled] = useState(false)
-  const pendingToggle = useRef(false)
+  const [localUrl, setLocalUrl] = useState<string | null>(null)
+  const [localEnabled, setLocalEnabled] = useState<boolean | null>(null)
+  const [pendingToggle, setPendingToggle] = useState(false)
 
-  useEffect(() => {
-    if (!config) return
-    setUrl(config.feedback_url || '')
-    if (!pendingToggle.current) {
-      setEnabled(config.feedback_enabled ?? false)
-    }
-  }, [config?.id, config?.feedback_url, config?.feedback_enabled])
+  const url = localUrl ?? config?.feedback_url ?? ''
+  const enabled = pendingToggle && localEnabled !== null ? localEnabled : (config?.feedback_enabled ?? false)
+
+  const setUrl = (v: string) => setLocalUrl(v)
+  const setEnabled = (v: boolean) => setLocalEnabled(v)
 
   const save = async () => {
     if (!config) return
@@ -33,14 +31,14 @@ export default function FeedbackUrlConfig({ config }: Props) {
     if (!config) return
     const next = !enabled
     setEnabled(next)
-    pendingToggle.current = true
+    setPendingToggle(true)
     try {
       await toggleFeedbackEnabled(config.id, next)
     } catch (err) {
       console.error('Failed to toggle feedback:', err)
       setEnabled(!next)
     }
-    setTimeout(() => { pendingToggle.current = false }, 4000)
+    setTimeout(() => { setPendingToggle(false) }, 4000)
   }
 
   return (

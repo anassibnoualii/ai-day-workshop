@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { Config, Workshop } from '../../types'
 import { addGlobalDoc, removeGlobalDoc } from '../../services/configService'
@@ -18,15 +18,19 @@ export default function LinkManager({ config, workshops }: Props) {
   const [newLabel, setNewLabel] = useState('')
   const [newUrl, setNewUrl] = useState('')
   const sorted = [...workshops].sort((a, b) => a.order - b.order)
-  const [workshopUrls, setWorkshopUrls] = useState<Record<string, string>>({})
+  const [urlOverrides, setUrlOverrides] = useState<Record<string, string>>({})
 
-  useEffect(() => {
+  const workshopUrls = useMemo(() => {
     const urls: Record<string, string> = {}
     for (const w of workshops) {
-      urls[w.id] = w.doc_url || ''
+      urls[w.id] = urlOverrides[w.id] ?? w.doc_url ?? ''
     }
-    setWorkshopUrls(urls)
-  }, [workshops])
+    return urls
+  }, [workshops, urlOverrides])
+
+  const setWorkshopUrls = (updated: Record<string, string>) => {
+    setUrlOverrides((prev) => ({ ...prev, ...updated }))
+  }
 
   const handleAddGlobalDoc = async () => {
     if (!config || !newLabel.trim() || !newUrl.trim()) return

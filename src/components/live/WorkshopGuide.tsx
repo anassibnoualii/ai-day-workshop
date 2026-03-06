@@ -180,34 +180,33 @@ function inlineFormat(text: string): string {
 export default function WorkshopGuide({ workshop }: Props) {
   const { t, i18n } = useTranslation()
   const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
-  const [content, setContent] = useState<string | null>(null)
-  const [loading, setLoading] = useState(false)
+  const [fetched, setFetched] = useState<{ url: string | null; content: string | null }>({ url: null, content: null })
   const [expanded, setExpanded] = useState(true)
 
   const guideUrl = workshop ? getGuideFileUrl(workshop, lang) : null
 
   useEffect(() => {
-    if (!guideUrl) {
-      setContent(null)
-      return
-    }
-    setLoading(true)
+    if (!guideUrl) return
+
+    let active = true
     fetch(guideUrl)
       .then((r) => {
         if (!r.ok) throw new Error('Not found')
         return r.text()
       })
       .then((text) => {
-        setContent(text)
-        setLoading(false)
+        if (active) setFetched({ url: guideUrl, content: text })
       })
       .catch(() => {
-        setContent(null)
-        setLoading(false)
+        if (active) setFetched({ url: guideUrl, content: null })
       })
+    return () => { active = false }
   }, [guideUrl])
 
-  if (!guideUrl || (!content && !loading)) return null
+  const loading = !!guideUrl && fetched.url !== guideUrl
+  const resolvedContent = guideUrl && fetched.url === guideUrl ? fetched.content : null
+
+  if (!guideUrl || (!resolvedContent && !loading)) return null
 
   return (
     <div>
@@ -231,11 +230,11 @@ export default function WorkshopGuide({ workshop }: Props) {
           <div className="px-6 pb-6 border-t border-surface-dark/30">
             {loading ? (
               <div className="py-8 text-center text-slate-gray text-sm">{t('live.loading')}</div>
-            ) : content ? (
+            ) : resolvedContent ? (
               <div className="mt-4">
                 <div
                   className="prose-custom"
-                  dangerouslySetInnerHTML={{ __html: renderMarkdown(content) }}
+                  dangerouslySetInnerHTML={{ __html: renderMarkdown(resolvedContent) }}
                 />
               </div>
             ) : null}

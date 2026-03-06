@@ -6,16 +6,15 @@ interface Props {
 }
 
 export default function PointAnimation({ points, trigger }: Props) {
-  const [show, setShow] = useState(false)
+  const [hiddenAt, setHiddenAt] = useState(0)
 
   useEffect(() => {
     if (trigger === 0) return
-    setShow(true)
-    const id = setTimeout(() => setShow(false), 1200)
+    const id = setTimeout(() => setHiddenAt(trigger), 1200)
     return () => clearTimeout(id)
   }, [trigger])
 
-  if (!show) return null
+  if (trigger === 0 || hiddenAt === trigger) return null
 
   return (
     <span

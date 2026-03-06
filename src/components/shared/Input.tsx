@@ -1,6 +1,6 @@
 import type { InputHTMLAttributes } from 'react'
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {}
+type Props = InputHTMLAttributes<HTMLInputElement>
 
 export default function Input({ className = '', ...rest }: Props) {
   return (

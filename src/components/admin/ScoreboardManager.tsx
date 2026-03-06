@@ -6,7 +6,7 @@ import { addScoreEntry, deleteAllScoreHistory } from '../../services/scoreHistor
 import Card from '../shared/Card'
 import Button from '../shared/Button'
 import Input from '../shared/Input'
-import { useToast } from '../shared/Toast'
+import { useToast } from '../../hooks/useToast'
 
 interface Props {
   teams: Team[]
