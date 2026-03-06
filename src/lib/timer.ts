@@ -1,12 +1,16 @@
+export function nowSeconds(): number {
+  return Math.floor(Date.now() / 1000)
+}
+
 export function calculateRemaining(
   timerStartedAt: number | null,
   durationSeconds: number,
   running: boolean,
   pausedRemaining: number | null
 ): number {
-  if (pausedRemaining != null && pausedRemaining > 0) return pausedRemaining
+  if (!running && pausedRemaining != null) return pausedRemaining
   if (!running || !timerStartedAt) return durationSeconds
-  const elapsed = Math.floor(Date.now() / 1000) - timerStartedAt
+  const elapsed = nowSeconds() - timerStartedAt
   return Math.max(0, durationSeconds - elapsed)
 }
 

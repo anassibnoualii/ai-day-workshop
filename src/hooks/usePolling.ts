@@ -1,21 +1,22 @@
-import { useEffect, useCallback } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import pb from '../lib/pocketbase'
-import { fetchAll } from '../services/collectionService'
 
 export function usePolling<T>(
   collection: string,
   onData: (items: T[]) => void,
-  _interval?: number,
   enabled = true
 ) {
+  const onDataRef = useRef(onData)
+  useEffect(() => { onDataRef.current = onData })
+
   const load = useCallback(async () => {
     try {
-      const records = await fetchAll<T>(collection)
-      onData(records)
+      const records = await pb.collection(collection).getFullList<T>()
+      onDataRef.current(records)
     } catch {
       // silent
     }
-  }, [collection, onData])
+  }, [collection])
 
   useEffect(() => {
     if (!enabled) return
@@ -23,41 +24,32 @@ export function usePolling<T>(
     load()
 
     let unsub: (() => void) | undefined
+    let unmounted = false
     pb.collection(collection).subscribe('*', () => {
       load()
-    }).then((fn) => { unsub = fn })
+    }).then((fn) => {
+      if (unmounted) fn()
+      else unsub = fn
+    })
 
-    return () => { unsub?.() }
+    return () => {
+      unmounted = true
+      unsub?.()
+    }
   }, [collection, enabled, load])
 }
 
 export function useSingleRecordPolling<T>(
   collection: string,
   onData: (item: T) => void,
-  _interval?: number,
   enabled = true
 ) {
-  const load = useCallback(async () => {
-    try {
-      const records = await fetchAll<T>(collection)
-      if (records.length > 0) {
-        onData(records[0])
-      }
-    } catch {
-      // silent
-    }
-  }, [collection, onData])
+  const onDataRef = useRef(onData)
+  useEffect(() => { onDataRef.current = onData })
 
-  useEffect(() => {
-    if (!enabled) return
+  const wrapped = useCallback((items: T[]) => {
+    if (items.length > 0) onDataRef.current(items[0])
+  }, [])
 
-    load()
-
-    let unsub: (() => void) | undefined
-    pb.collection(collection).subscribe('*', () => {
-      load()
-    }).then((fn) => { unsub = fn })
-
-    return () => { unsub?.() }
-  }, [collection, enabled, load])
+  usePolling(collection, wrapped, enabled)
 }

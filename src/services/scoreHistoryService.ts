@@ -1,5 +1,5 @@
 import pb from '../lib/pocketbase'
-import type { ScoreHistory } from '../types'
+import { deleteAllRecords } from './collectionService'
 
 export async function addScoreEntry(teamId: string, delta: number, label: string) {
   await pb.collection('score_history').create({
@@ -10,10 +10,5 @@ export async function addScoreEntry(teamId: string, delta: number, label: string
 }
 
 export async function deleteAllScoreHistory() {
-  const records = await pb.collection('score_history').getFullList<ScoreHistory>({
-    requestKey: 'deleteAllHistory',
-  })
-  for (const r of records) {
-    await pb.collection('score_history').delete(r.id, { requestKey: null })
-  }
+  await deleteAllRecords('score_history')
 }

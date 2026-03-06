@@ -88,3 +88,7 @@ npm run lint && npm run build
 
 `npm run lint` runs ESLint. `npm run build` runs TypeScript type-checking (`tsc -b`) then Vite
 production build.
+
+## Code Review
+
+After adding new code, run the `code-review` plugin to review changes before committing.

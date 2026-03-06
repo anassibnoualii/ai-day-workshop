@@ -33,7 +33,7 @@ export default function ScoreboardManager({ teams, scoreHistory }: Props) {
     if (delta === 0 || isNaN(delta)) return
     try {
       const label = labelInputs[team.id]?.trim() || ''
-      await updateTeamScore(team, delta)
+      await updateTeamScore(team.id, delta)
       await addScoreEntry(team.id, delta, label)
       setPointInputs((prev) => ({ ...prev, [team.id]: '' }))
       setLabelInputs((prev) => ({ ...prev, [team.id]: '' }))

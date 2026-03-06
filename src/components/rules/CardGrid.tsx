@@ -2,11 +2,18 @@ import { useTranslation } from 'react-i18next'
 import { CARD_CATALOG } from '../../lib/cards'
 import ChallengeCard from '../shared/ChallengeCard'
 
-const groupColors = {
+const groupColors: Record<string, string> = {
   red: 'text-card-red',
   orange: 'text-card-orange',
   green: 'text-card-green',
   purple: 'text-card-purple',
+}
+
+const groupBarBg: Record<string, string> = {
+  red: 'bg-card-red',
+  orange: 'bg-card-orange',
+  green: 'bg-card-green',
+  purple: 'bg-card-purple',
 }
 
 export default function CardGrid() {
@@ -27,7 +34,7 @@ export default function CardGrid() {
         return (
           <div key={g.color} className="mb-8">
             <div className="flex items-center gap-3 mb-4">
-              <div className={`w-1 h-5 rounded-full bg-card-${g.color}`} />
+              <div className={`w-1 h-5 rounded-full ${groupBarBg[g.color]}`} />
               <h4 className={`text-xs font-bold uppercase tracking-[0.15em] ${groupColors[g.color]}`}>{g.label}</h4>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

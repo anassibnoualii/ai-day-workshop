@@ -6,6 +6,6 @@ import type { Workshop } from '../types'
 export function useWorkshops(enabled = true) {
   const setWorkshops = useEventStore((s) => s.setWorkshops)
   const onData = useCallback((items: Workshop[]) => setWorkshops(items), [setWorkshops])
-  usePolling<Workshop>('workshops', onData, 3000, enabled)
+  usePolling<Workshop>('workshops', onData, enabled)
   return useEventStore((s) => s.workshops)
 }

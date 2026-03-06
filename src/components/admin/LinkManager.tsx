@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import type { Config, Workshop } from '../../types'
 import { addGlobalDoc, removeGlobalDoc } from '../../services/configService'
 import { updateWorkshopDocUrl } from '../../services/workshopService'
+import { useLang } from '../../lib/lang'
 import Card from '../shared/Card'
 import Button from '../shared/Button'
 import Input from '../shared/Input'
@@ -13,8 +14,8 @@ interface Props {
 }
 
 export default function LinkManager({ config, workshops }: Props) {
-  const { t, i18n } = useTranslation()
-  const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
+  const { t } = useTranslation()
+  const lang = useLang()
   const [newLabel, setNewLabel] = useState('')
   const [newUrl, setNewUrl] = useState('')
   const sorted = [...workshops].sort((a, b) => a.order - b.order)
@@ -34,14 +35,14 @@ export default function LinkManager({ config, workshops }: Props) {
 
   const handleAddGlobalDoc = async () => {
     if (!config || !newLabel.trim() || !newUrl.trim()) return
-    await addGlobalDoc(config, newLabel.trim(), newUrl.trim())
+    await addGlobalDoc(config.id, newLabel.trim(), newUrl.trim())
     setNewLabel('')
     setNewUrl('')
   }
 
   const handleRemoveGlobalDoc = async (index: number) => {
     if (!config) return
-    await removeGlobalDoc(config, index)
+    await removeGlobalDoc(config.id, index)
   }
 
   return (
@@ -50,7 +51,7 @@ export default function LinkManager({ config, workshops }: Props) {
         <h3 className="font-display font-bold text-prussian mb-5">{t('admin.globalDocs')}</h3>
         <div className="space-y-2 mb-4">
           {config?.global_docs?.map((doc, i) => (
-            <div key={i} className="flex items-center gap-3 bg-surface rounded-xl px-4 py-3 text-sm border border-surface-dark/30">
+            <div key={`${doc.label}-${doc.url}`} className="flex items-center gap-3 bg-surface rounded-xl px-4 py-3 text-sm border border-surface-dark/30">
               <span className="flex-1 truncate font-medium text-dark-slate">{doc.label}</span>
               <a href={doc.url} target="_blank" rel="noopener noreferrer" className="text-sushi text-xs hover:underline truncate max-w-48">{doc.url}</a>
               <Button variant="ghost" size="sm" onClick={() => handleRemoveGlobalDoc(i)} className="text-card-red !bg-transparent hover:!bg-card-red/10 !w-6 !h-6 !px-0">&times;</Button>

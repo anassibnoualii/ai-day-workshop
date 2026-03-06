@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import type { Workshop } from '../../types'
+import { useLang } from '../../lib/lang'
 import Timer from '../shared/Timer'
 
 interface Props {
@@ -7,8 +8,8 @@ interface Props {
 }
 
 export default function ActiveWorkshopHero({ workshop }: Props) {
-  const { t, i18n } = useTranslation()
-  const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
+  const { t } = useTranslation()
+  const lang = useLang()
 
   if (!workshop) return null
 

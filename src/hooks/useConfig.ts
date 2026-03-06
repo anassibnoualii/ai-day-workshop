@@ -6,6 +6,6 @@ import type { Config } from '../types'
 export function useConfig(enabled = true) {
   const setConfig = useEventStore((s) => s.setConfig)
   const onData = useCallback((item: Config) => setConfig(item), [setConfig])
-  useSingleRecordPolling<Config>('config', onData, 3000, enabled)
+  useSingleRecordPolling<Config>('config', onData, enabled)
   return useEventStore((s) => s.config)
 }

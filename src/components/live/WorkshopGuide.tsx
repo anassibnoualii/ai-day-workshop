@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { Workshop } from '../../types'
 import { getGuideFileUrl } from '../../lib/guides'
+import { useLang } from '../../lib/lang'
 import SectionHeading from '../shared/SectionHeading'
 import Button from '../shared/Button'
 
@@ -168,8 +169,16 @@ function renderMarkdown(md: string): string {
   return result.join('\n')
 }
 
-function inlineFormat(text: string): string {
+function escapeHtml(text: string): string {
   return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
+
+function inlineFormat(text: string): string {
+  return escapeHtml(text)
     .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="inline-block rounded-lg border border-surface-dark/30 shadow-sm max-w-full my-2" />')
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-sushi hover:underline font-medium">$1</a>')
     .replace(/`([^`]+)`/g, '<code class="bg-surface-dark/60 text-prussian px-1.5 py-0.5 rounded text-xs font-mono">$1</code>')
@@ -178,8 +187,8 @@ function inlineFormat(text: string): string {
 }
 
 export default function WorkshopGuide({ workshop }: Props) {
-  const { t, i18n } = useTranslation()
-  const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
+  const { t } = useTranslation()
+  const lang = useLang()
   const [fetched, setFetched] = useState<{ url: string | null; content: string | null }>({ url: null, content: null })
   const [expanded, setExpanded] = useState(true)
 

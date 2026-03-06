@@ -1,8 +1,10 @@
 import pb from '../lib/pocketbase'
 import type { Team } from '../types'
+import { deleteAllRecords } from './collectionService'
 
-export async function updateTeamScore(team: Team, delta: number) {
-  await pb.collection('teams').update(team.id, { score: team.score + delta })
+export async function updateTeamScore(teamId: string, delta: number) {
+  const team = await pb.collection('teams').getOne<Team>(teamId)
+  await pb.collection('teams').update(teamId, { score: team.score + delta })
 }
 
 export async function createTeam(name: string, emoji: string) {
@@ -20,12 +22,7 @@ export async function deleteTeam(id: string) {
 }
 
 export async function deleteAllTeams() {
-  const records = await pb.collection('teams').getFullList<Team>({
-    requestKey: 'deleteAllTeams',
-  })
-  for (const r of records) {
-    await pb.collection('teams').delete(r.id, { requestKey: null })
-  }
+  await deleteAllRecords('teams')
 }
 
 export async function updateTeamInfo(teamId: string, data: { name?: string; emoji?: string }) {
@@ -37,9 +34,9 @@ export async function updateTeamMembers(teamId: string, members: string[]) {
 }
 
 export async function resetAllScores(teams: Team[]) {
-  for (const t of teams) {
-    if (t.score !== 0) {
-      await pb.collection('teams').update(t.id, { score: 0 })
-    }
-  }
+  await Promise.all(
+    teams.filter((t) => t.score !== 0).map((t) =>
+      pb.collection('teams').update(t.id, { score: 0 })
+    )
+  )
 }

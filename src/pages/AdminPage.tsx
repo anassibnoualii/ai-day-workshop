@@ -27,9 +27,10 @@ type TabId = (typeof TABS)[number]['id']
 export default function AdminPage() {
   const { t } = useTranslation()
   const { isAuthenticated, login, logout, error } = useAdminAuth()
-  const [activeTab, setActiveTab] = useState<TabId>(() =>
-    (localStorage.getItem('adminTab') as TabId) || 'timeline'
-  )
+  const [activeTab, setActiveTab] = useState<TabId>(() => {
+    const saved = localStorage.getItem('adminTab')
+    return TABS.some((tab) => tab.id === saved) ? (saved as TabId) : 'timeline'
+  })
 
   const changeTab = (tab: TabId) => {
     setActiveTab(tab)

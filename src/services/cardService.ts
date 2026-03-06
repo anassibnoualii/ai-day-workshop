@@ -3,7 +3,7 @@ import type { CardDefinition } from '../types'
 
 export async function revealCard(teamId: string, card: CardDefinition) {
   const existing = await pb.collection('challenge_cards').getFullList({
-    filter: `team_id="${teamId}" && status="active"`,
+    filter: pb.filter('team_id = {:teamId} && status = "active"', { teamId }),
   })
   for (const rec of existing) {
     await pb.collection('challenge_cards').update(rec.id, { status: 'completed' })

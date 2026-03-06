@@ -1,12 +1,19 @@
+import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import LanguageToggle from './LanguageToggle'
-import { isAuthenticated } from '../../services/authService'
+import pb from '../../lib/pocketbase'
 
 export default function Navbar() {
   const { t } = useTranslation()
   const { pathname } = useLocation()
-  const isAdmin = isAuthenticated()
+  const [isAdmin, setIsAdmin] = useState(pb.authStore.isValid)
+
+  useEffect(() => {
+    return pb.authStore.onChange(() => {
+      setIsAdmin(pb.authStore.isValid)
+    })
+  }, [])
 
   const links = [
     { to: '/', label: t('nav.home') },

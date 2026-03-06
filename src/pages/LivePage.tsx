@@ -25,6 +25,7 @@ export default function LivePage() {
 
   useEffect(() => {
     if (selectedTeamId) localStorage.setItem('selectedTeamId', selectedTeamId)
+    else localStorage.removeItem('selectedTeamId')
   }, [selectedTeamId])
 
   const activeWorkshop = workshops.find((w) => w.id === eventState?.active_workshop_id)

@@ -5,7 +5,4 @@ export interface ToastContextValue {
   error: (message: string) => void
 }
 
-export const ToastContext = createContext<ToastContextValue>({
-  success: () => {},
-  error: () => {},
-})
+export const ToastContext = createContext<ToastContextValue | null>(null)

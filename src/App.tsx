@@ -15,9 +15,7 @@ export default function App() {
     <ToastProvider>
     <BrowserRouter>
       <div className="min-h-screen flex flex-col bg-white font-sans text-dark-slate">
-        <Suspense fallback={null}>
-          <Navbar />
-        </Suspense>
+        <Navbar />
         <main className="flex-1">
           <Suspense fallback={<div className="flex items-center justify-center min-h-[60vh] text-slate-gray">Loading...</div>}>
             <Routes>
@@ -30,9 +28,7 @@ export default function App() {
             </Routes>
           </Suspense>
         </main>
-        <Suspense fallback={null}>
-          <Footer />
-        </Suspense>
+        <Footer />
       </div>
     </BrowserRouter>
     </ToastProvider>

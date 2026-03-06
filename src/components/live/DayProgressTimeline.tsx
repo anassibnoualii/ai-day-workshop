@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import type { Workshop } from '../../types'
 import { useTimer } from '../../hooks/useTimer'
 import { useEventStore } from '../../stores/eventStore'
+import { useLang } from '../../lib/lang'
 import SectionHeading from '../shared/SectionHeading'
 
 interface Props {
@@ -9,8 +10,8 @@ interface Props {
 }
 
 export default function DayProgressTimeline({ workshops }: Props) {
-  const { i18n, t } = useTranslation()
-  const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
+  const { t } = useTranslation()
+  const lang = useLang()
   const sorted = [...workshops].sort((a, b) => a.order - b.order)
   const { remaining } = useTimer()
   const eventState = useEventStore((s) => s.eventState)

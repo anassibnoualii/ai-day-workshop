@@ -1,4 +1,5 @@
 import pb from '../lib/pocketbase'
+import { nowSeconds } from '../lib/timer'
 import type { EventState } from '../types'
 
 export async function activateWorkshop(
@@ -9,7 +10,7 @@ export async function activateWorkshop(
   await pb.collection('event_state').update<EventState>(eventStateId, {
     active_workshop_id: workshopId,
     timer_duration_seconds: workshopDuration,
-    timer_started_at: Math.floor(Date.now() / 1000),
+    timer_started_at: nowSeconds(),
     timer_running: true,
     timer_paused_remaining: null,
   })
@@ -17,14 +18,14 @@ export async function activateWorkshop(
 
 export async function startTimer(eventStateId: string) {
   await pb.collection('event_state').update<EventState>(eventStateId, {
-    timer_started_at: Math.floor(Date.now() / 1000),
+    timer_started_at: nowSeconds(),
     timer_running: true,
     timer_paused_remaining: null,
   })
 }
 
 export async function pauseTimer(eventState: EventState) {
-  const now = Math.floor(Date.now() / 1000)
+  const now = nowSeconds()
   const elapsed = eventState.timer_started_at ? now - eventState.timer_started_at : 0
   const remaining = Math.max(0, eventState.timer_duration_seconds - elapsed)
   await pb.collection('event_state').update<EventState>(eventState.id, {
@@ -34,8 +35,8 @@ export async function pauseTimer(eventState: EventState) {
 }
 
 export async function resumeTimer(eventState: EventState) {
-  const remaining = eventState.timer_paused_remaining || eventState.timer_duration_seconds
-  const now = Math.floor(Date.now() / 1000)
+  const remaining = eventState.timer_paused_remaining ?? eventState.timer_duration_seconds
+  const now = nowSeconds()
   const fakeStartedAt = now - (eventState.timer_duration_seconds - remaining)
   await pb.collection('event_state').update<EventState>(eventState.id, {
     timer_started_at: fakeStartedAt,

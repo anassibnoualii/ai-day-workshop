@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { Config } from '../../types'
 import { updateFeedbackUrl, toggleFeedbackEnabled } from '../../services/configService'
@@ -15,6 +15,11 @@ export default function FeedbackUrlConfig({ config }: Props) {
   const [localUrl, setLocalUrl] = useState<string | null>(null)
   const [localEnabled, setLocalEnabled] = useState<boolean | null>(null)
   const [pendingToggle, setPendingToggle] = useState(false)
+  const toggleTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
+
+  useEffect(() => {
+    return () => { clearTimeout(toggleTimerRef.current) }
+  }, [])
 
   const url = localUrl ?? config?.feedback_url ?? ''
   const enabled = pendingToggle && localEnabled !== null ? localEnabled : (config?.feedback_enabled ?? false)
@@ -38,7 +43,8 @@ export default function FeedbackUrlConfig({ config }: Props) {
       console.error('Failed to toggle feedback:', err)
       setEnabled(!next)
     }
-    setTimeout(() => { setPendingToggle(false) }, 4000)
+    clearTimeout(toggleTimerRef.current)
+    toggleTimerRef.current = setTimeout(() => { setPendingToggle(false) }, 4000)
   }
 
   return (

@@ -1,7 +1,7 @@
-import { useTranslation } from 'react-i18next'
 import type { CardDefinition } from '../../types'
+import { useLang } from '../../lib/lang'
 
-const colorMap: Record<string, { bg: string; border: string; selectedBorder: string }> = {
+const colorMap: Record<CardDefinition['color'], { bg: string; border: string; selectedBorder: string }> = {
   red: {
     bg: 'bg-card-red/5',
     border: 'border-card-red/20',
@@ -24,7 +24,7 @@ const colorMap: Record<string, { bg: string; border: string; selectedBorder: str
   },
 }
 
-const badgeMap: Record<string, string> = {
+const badgeMap: Record<CardDefinition['color'], string> = {
   red: 'bg-card-red',
   orange: 'bg-card-orange',
   green: 'bg-card-green',
@@ -39,8 +39,7 @@ interface Props {
 }
 
 export default function ChallengeCard({ card, animated, selected, compact }: Props) {
-  const { i18n } = useTranslation()
-  const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
+  const lang = useLang()
   const title = lang === 'fr' ? card.title_fr : card.title_en
   const mission = lang === 'fr' ? card.mission_fr : card.mission_en
   const colors = colorMap[card.color]

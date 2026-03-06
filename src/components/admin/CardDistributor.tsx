@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { Team } from '../../types'
+import type { CardDefinition } from '../../types'
 import { CARD_CATALOG } from '../../lib/cards'
 import { revealCard } from '../../services/cardService'
 import ChallengeCard from '../shared/ChallengeCard'
 import Card from '../shared/Card'
 import Button from '../shared/Button'
 import Select from '../shared/Select'
+import { useLang } from '../../lib/lang'
 
 const COLOR_FILTERS = ['all', 'red', 'orange', 'green', 'purple'] as const
 type ColorFilter = (typeof COLOR_FILTERS)[number]
@@ -27,34 +29,45 @@ const filterInactiveStyles: Record<ColorFilter, string> = {
   purple: '!bg-transparent !text-card-purple hover:!bg-card-purple/10',
 }
 
+const badgeBgMap: Record<CardDefinition['color'], string> = {
+  red: 'bg-card-red',
+  orange: 'bg-card-orange',
+  green: 'bg-card-green',
+  purple: 'bg-card-purple',
+}
+
 interface Props {
   teams: Team[]
 }
 
 export default function CardDistributor({ teams }: Props) {
-  const { t, i18n } = useTranslation()
-  const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
+  const { t } = useTranslation()
+  const lang = useLang()
   const [selectedTeam, setSelectedTeam] = useState('')
   const [selectedCard, setSelectedCard] = useState('')
   const [colorFilter, setColorFilter] = useState<ColorFilter>('all')
   const [revealed, setRevealed] = useState(false)
+  const revealTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
+
+  useEffect(() => {
+    return () => { clearTimeout(revealTimerRef.current) }
+  }, [])
 
   const filteredCards = colorFilter === 'all'
     ? CARD_CATALOG
     : CARD_CATALOG.filter((c) => c.color === colorFilter)
 
   const selectedCardDef = CARD_CATALOG.find((c) => c.id === selectedCard)
-  const selectedTeamObj = teams.find((t) => t.id === selectedTeam)
+  const selectedTeamObj = teams.find((team) => team.id === selectedTeam)
 
   const handleReveal = async () => {
-    if (!selectedTeam || !selectedCard) return
-    const card = CARD_CATALOG.find((c) => c.id === selectedCard)
-    if (!card) return
+    if (!selectedTeam || !selectedCardDef) return
 
-    await revealCard(selectedTeam, card)
+    await revealCard(selectedTeam, selectedCardDef)
 
     setRevealed(true)
-    setTimeout(() => setRevealed(false), 2500)
+    clearTimeout(revealTimerRef.current)
+    revealTimerRef.current = setTimeout(() => setRevealed(false), 2500)
     setSelectedCard('')
   }
 
@@ -94,7 +107,7 @@ export default function CardDistributor({ teams }: Props) {
             <span className="text-sm font-semibold text-prussian">
               {lang === 'fr' ? selectedCardDef.title_fr : selectedCardDef.title_en}
             </span>
-            <span className={`text-xs font-bold px-2 py-0.5 rounded-lg text-white ml-auto bg-card-${selectedCardDef.color}`}>
+            <span className={`text-xs font-bold px-2 py-0.5 rounded-lg text-white ml-auto ${badgeBgMap[selectedCardDef.color]}`}>
               +{selectedCardDef.points} pts
             </span>
           </div>

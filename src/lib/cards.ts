@@ -142,6 +142,3 @@ export function getCardById(id: string): CardDefinition | undefined {
   return CARD_CATALOG.find((c) => c.id === id)
 }
 
-export function getCardsByColor(color: CardDefinition['color']): CardDefinition[] {
-  return CARD_CATALOG.filter((c) => c.color === color)
-}

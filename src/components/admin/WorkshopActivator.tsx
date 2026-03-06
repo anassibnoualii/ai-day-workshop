@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import type { Workshop, EventState } from '../../types'
 import { updateWorkshopStatuses } from '../../services/workshopService'
 import { activateWorkshop } from '../../services/eventStateService'
+import { useLang } from '../../lib/lang'
 import Card from '../shared/Card'
 import Button from '../shared/Button'
 
@@ -11,8 +12,8 @@ interface Props {
 }
 
 export default function WorkshopActivator({ workshops, eventState }: Props) {
-  const { t, i18n } = useTranslation()
-  const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
+  const { t } = useTranslation()
+  const lang = useLang()
   const sorted = [...workshops].sort((a, b) => a.order - b.order)
 
   const activate = async (workshop: Workshop) => {
