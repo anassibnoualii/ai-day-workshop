@@ -99,6 +99,7 @@
   "feedback": {
     "cta": "Donnez-nous votre avis",
     "open": "Ouvrir le formulaire",
+    "subtitle": "Scannez le QR code ou cliquez sur le bouton",
     "disabledHint": "Le formulaire est masque pour les participants. Activez pour l'afficher."
   },
   "admin": {

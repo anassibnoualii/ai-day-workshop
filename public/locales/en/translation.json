@@ -99,6 +99,7 @@
   "feedback": {
     "cta": "Give us your feedback",
     "open": "Open form",
+    "subtitle": "Scan the QR code or click the button",
     "disabledHint": "Feedback form is hidden from participants. Toggle on to show it."
   },
   "admin": {
