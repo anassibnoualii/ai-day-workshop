@@ -6,6 +6,7 @@ import { addScoreEntry, deleteAllScoreHistory } from '../../services/scoreHistor
 import Card from '../shared/Card'
 import Button from '../shared/Button'
 import Input from '../shared/Input'
+import { useToast } from '../shared/Toast'
 
 interface Props {
   teams: Team[]
@@ -14,6 +15,7 @@ interface Props {
 
 export default function ScoreboardManager({ teams, scoreHistory }: Props) {
   const { t } = useTranslation()
+  const toast = useToast()
   const sorted = [...teams].sort((a, b) => b.score - a.score)
   const [newName, setNewName] = useState('')
   const [newEmoji, setNewEmoji] = useState('')
@@ -29,24 +31,36 @@ export default function ScoreboardManager({ teams, scoreHistory }: Props) {
 
   const addPoints = async (team: Team, delta: number) => {
     if (delta === 0 || isNaN(delta)) return
-    const label = labelInputs[team.id]?.trim() || ''
-    await updateTeamScore(team, delta)
-    await addScoreEntry(team.id, delta, label)
-    setPointInputs((prev) => ({ ...prev, [team.id]: '' }))
-    setLabelInputs((prev) => ({ ...prev, [team.id]: '' }))
+    try {
+      const label = labelInputs[team.id]?.trim() || ''
+      await updateTeamScore(team, delta)
+      await addScoreEntry(team.id, delta, label)
+      setPointInputs((prev) => ({ ...prev, [team.id]: '' }))
+      setLabelInputs((prev) => ({ ...prev, [team.id]: '' }))
+    } catch (e: unknown) {
+      toast.error(e instanceof Error ? e.message : String(e))
+    }
   }
 
   const handleAddTeam = async () => {
     if (!newName.trim()) return
-    await createTeam(newName.trim(), newEmoji)
-    setNewName('')
-    setNewEmoji('')
+    try {
+      await createTeam(newName.trim(), newEmoji)
+      setNewName('')
+      setNewEmoji('')
+    } catch (e: unknown) {
+      toast.error(e instanceof Error ? e.message : String(e))
+    }
   }
 
   const handleResetAll = async () => {
     if (!confirm(t('score.confirmReset'))) return
-    await deleteAllScoreHistory()
-    await deleteAllTeams()
+    try {
+      await deleteAllScoreHistory()
+      await deleteAllTeams()
+    } catch (e: unknown) {
+      toast.error(e instanceof Error ? e.message : String(e))
+    }
   }
 
   const startEditTeam = (team: Team) => {

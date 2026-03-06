@@ -21,7 +21,8 @@ migrate((app) => {
         { name: "status",   type: "text",   required: true },
         { name: "duration", type: "number", required: true },
         { name: "doc_url", type: "url",  required: false },
-        { name: "guides", type: "json", required: false },
+        { name: "guide_fr", type: "file", required: false, maxSelect: 1 },
+        { name: "guide_en", type: "file", required: false, maxSelect: 1 },
         { name: "order",  type: "number", required: true },
       ],
     },
@@ -97,11 +98,13 @@ migrate((app) => {
     for (const field of def.fields) {
       const existing = collection.fields.find((f) => f.name === field.name)
       if (!existing) {
-        collection.fields.push(new Field({
+        const opts = {
           name: field.name,
           type: field.type,
           required: field.required || false,
-        }))
+        }
+        if (field.maxSelect !== undefined) opts.maxSelect = field.maxSelect
+        collection.fields.push(new Field(opts))
       }
     }
 

@@ -23,7 +23,7 @@ const sizeStyles: Record<Size, string> = {
 export default function Button({ variant = 'primary', size = 'md', className = '', disabled, children, ...rest }: Props) {
   return (
     <button
-      className={`transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed active:scale-[0.97] ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      className={`transition-colors duration-200 disabled:opacity-40 disabled:cursor-not-allowed active:scale-[0.97] ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
       disabled={disabled}
       {...rest}
     >

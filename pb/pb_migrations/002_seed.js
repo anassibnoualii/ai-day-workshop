@@ -11,14 +11,14 @@ migrate((app) => {
       },
     ],
     workshops: [
-      { title_fr: "Icebreaker & Intro",                title_en: "Icebreaker & Intro",                status: "pending", duration: 1800, order: 1, guides: [] },
-      { title_fr: "Atelier 1 — Agent Declaratif",      title_en: "Workshop 1 — Declarative Agent",    status: "pending", duration: 2700, order: 2, guides: [{ fr: "/guides/fr/atelier-1-agent-declaratif.md", en: "/guides/en/workshop-1-declarative-agent.md" }] },
-      { title_fr: "Pause",                             title_en: "Break",                              status: "pending", duration: 900,  order: 3, guides: [] },
-      { title_fr: "Atelier 2 — Agent Conversationnel", title_en: "Workshop 2 — Conversational Agent", status: "pending", duration: 2700, order: 4, guides: [{ fr: "/guides/fr/atelier-2-agent-conversationnel.md", en: "/guides/en/workshop-2-conversational-agent.md" }] },
-      { title_fr: "Discours / Keynote",                title_en: "Keynote",                            status: "pending", duration: 3600, order: 5, guides: [] },
-      { title_fr: "Dejeuner",                          title_en: "Lunch",                              status: "pending", duration: 3600, order: 6, guides: [] },
-      { title_fr: "Atelier 3 — Agent Autonome",        title_en: "Workshop 3 — Autonomous Agent",     status: "pending", duration: 4500, order: 7, guides: [{ fr: "/guides/fr/atelier-3-agent-autonome.md", en: "/guides/en/workshop-3-autonomous-agent.md" }] },
-      { title_fr: "Awards & Feedback",                 title_en: "Awards & Feedback",                  status: "pending", duration: 1800, order: 8, guides: [] },
+      { title_fr: "Icebreaker & Intro",                title_en: "Icebreaker & Intro",                status: "pending", duration: 1800, order: 1 },
+      { title_fr: "Atelier 1 — Agent Declaratif",      title_en: "Workshop 1 — Declarative Agent",    status: "pending", duration: 2700, order: 2 },
+      { title_fr: "Pause",                             title_en: "Break",                              status: "pending", duration: 900,  order: 3 },
+      { title_fr: "Atelier 2 — Agent Conversationnel", title_en: "Workshop 2 — Conversational Agent", status: "pending", duration: 2700, order: 4 },
+      { title_fr: "Discours / Keynote",                title_en: "Keynote",                            status: "pending", duration: 3600, order: 5 },
+      { title_fr: "Dejeuner",                          title_en: "Lunch",                              status: "pending", duration: 3600, order: 6 },
+      { title_fr: "Atelier 3 — Agent Autonome",        title_en: "Workshop 3 — Autonomous Agent",     status: "pending", duration: 4500, order: 7 },
+      { title_fr: "Awards & Feedback",                 title_en: "Awards & Feedback",                  status: "pending", duration: 1800, order: 8 },
     ],
     config: [
       {

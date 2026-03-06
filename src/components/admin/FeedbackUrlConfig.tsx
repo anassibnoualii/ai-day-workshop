@@ -47,11 +47,12 @@ export default function FeedbackUrlConfig({ config }: Props) {
     <Card>
       <div className="flex items-center justify-between mb-5">
         <h3 className="font-display font-bold text-prussian">{t('admin.feedbackUrl')}</h3>
-        <button
-          type="button"
+        <Button
+          variant="ghost"
+          size="sm"
           onClick={handleToggle}
-          className={`relative w-12 h-6 rounded-full transition-colors duration-200 ${
-            enabled ? 'bg-sushi' : 'bg-slate-gray/30'
+          className={`!relative !w-12 !h-6 !rounded-full !p-0 transition-colors duration-200 ${
+            enabled ? '!bg-sushi' : '!bg-slate-gray/30'
           }`}
         >
           <span
@@ -59,7 +60,7 @@ export default function FeedbackUrlConfig({ config }: Props) {
               enabled ? 'translate-x-6' : ''
             }`}
           />
-        </button>
+        </Button>
       </div>
       {!enabled && (
         <p className="text-xs text-slate-gray mb-4">{t('feedback.disabledHint')}</p>

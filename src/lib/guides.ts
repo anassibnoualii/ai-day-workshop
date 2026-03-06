@@ -1,8 +1,9 @@
 import type { Workshop } from '../types'
 
-export function getGuideUrls(workshop: Workshop, lang: string): string[] {
-  if (!workshop.guides || !Array.isArray(workshop.guides)) return []
-  return workshop.guides
-    .map((g) => (lang === 'fr' ? g.fr : g.en))
-    .filter(Boolean)
+const PB_URL = import.meta.env.VITE_PB_URL || 'http://127.0.0.1:8090'
+
+export function getGuideFileUrl(workshop: Workshop, lang: string): string | null {
+  const filename = lang === 'fr' ? workshop.guide_fr : workshop.guide_en
+  if (!filename) return null
+  return `${PB_URL}/api/files/workshops/${workshop.id}/${filename}`
 }

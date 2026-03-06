@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { Workshop } from '../../types'
-import { getGuideUrls } from '../../lib/guides'
+import { getGuideFileUrl } from '../../lib/guides'
 import SectionHeading from '../shared/SectionHeading'
+import Button from '../shared/Button'
 
 interface Props {
   workshop: Workshop | undefined
@@ -179,43 +180,43 @@ function inlineFormat(text: string): string {
 export default function WorkshopGuide({ workshop }: Props) {
   const { t, i18n } = useTranslation()
   const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
-  const [contents, setContents] = useState<string[]>([])
+  const [content, setContent] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [expanded, setExpanded] = useState(true)
 
-  const guideUrls = workshop ? getGuideUrls(workshop, lang) : []
-  const urlsKey = guideUrls.join(',')
+  const guideUrl = workshop ? getGuideFileUrl(workshop, lang) : null
 
   useEffect(() => {
-    if (guideUrls.length === 0) {
-      setContents([])
+    if (!guideUrl) {
+      setContent(null)
       return
     }
     setLoading(true)
-    Promise.all(
-      guideUrls.map((url) =>
-        fetch(url)
-          .then((r) => {
-            if (!r.ok) throw new Error('Not found')
-            return r.text()
-          })
-          .catch(() => null)
-      )
-    ).then((results) => {
-      setContents(results.filter((r): r is string => r !== null))
-      setLoading(false)
-    })
-  }, [urlsKey])
+    fetch(guideUrl)
+      .then((r) => {
+        if (!r.ok) throw new Error('Not found')
+        return r.text()
+      })
+      .then((text) => {
+        setContent(text)
+        setLoading(false)
+      })
+      .catch(() => {
+        setContent(null)
+        setLoading(false)
+      })
+  }, [guideUrl])
 
-  if (guideUrls.length === 0 || (contents.length === 0 && !loading)) return null
+  if (!guideUrl || (!content && !loading)) return null
 
   return (
     <div>
       <SectionHeading>{t('live.workshopGuide')}</SectionHeading>
       <div className="bg-white rounded-2xl shadow-sm shadow-prussian/5 border border-surface-dark/50 overflow-hidden">
-        <button
+        <Button
+          variant="ghost"
           onClick={() => setExpanded(!expanded)}
-          className="w-full flex items-center gap-3 px-6 py-4 text-left hover:bg-surface/50 transition-colors"
+          className="!w-full !flex !items-center !gap-3 !px-6 !py-4 !text-left !rounded-none hover:!bg-surface/50"
         >
           <span className="w-8 h-8 rounded-lg bg-sushi/15 flex items-center justify-center text-sushi shrink-0">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
@@ -224,21 +225,18 @@ export default function WorkshopGuide({ workshop }: Props) {
             {t('live.guideTitle')}
           </span>
           <svg className={`w-5 h-5 text-slate-gray transition-transform duration-200 ${expanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
-        </button>
+        </Button>
 
         {expanded && (
           <div className="px-6 pb-6 border-t border-surface-dark/30">
             {loading ? (
               <div className="py-8 text-center text-slate-gray text-sm">{t('live.loading')}</div>
-            ) : contents.length > 0 ? (
-              <div className="mt-4 space-y-8">
-                {contents.map((md, idx) => (
-                  <div
-                    key={idx}
-                    className="prose-custom"
-                    dangerouslySetInnerHTML={{ __html: renderMarkdown(md) }}
-                  />
-                ))}
+            ) : content ? (
+              <div className="mt-4">
+                <div
+                  className="prose-custom"
+                  dangerouslySetInnerHTML={{ __html: renderMarkdown(content) }}
+                />
               </div>
             ) : null}
           </div>
