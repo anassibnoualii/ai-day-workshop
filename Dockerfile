@@ -4,6 +4,8 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . .
+ARG VITE_PB_URL
+ENV VITE_PB_URL=$VITE_PB_URL
 RUN npm run build
 
 FROM nginx:alpine
