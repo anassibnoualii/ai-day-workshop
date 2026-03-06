@@ -10,6 +10,11 @@ interface Props {
 export default function ResourceLinks({ config, activeWorkshop }: Props) {
   const { t } = useTranslation()
 
+  const hasWorkshopDoc = !!activeWorkshop?.doc_url
+  const hasGlobalDocs = (config?.global_docs?.length ?? 0) > 0
+
+  if (!hasWorkshopDoc && !hasGlobalDocs) return null
+
   return (
     <div>
       <SectionHeading>{t('live.resources')}</SectionHeading>
