@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef, type ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
-import { findParticipantByUsername, registerParticipant } from '../../services/participantService'
+import { useConfig } from '../../hooks/useConfig'
 import pb from '../../lib/pocketbase'
 import Button from './Button'
 import Input from './Input'
@@ -9,132 +9,35 @@ interface Props {
   children: ReactNode
 }
 
-type GateState =
-  | { status: 'loading' }
-  | { status: 'form' }
-  | { status: 'pending'; username: string }
-  | { status: 'approved' }
+type GateState = 'form' | 'approved'
 
 export default function ParticipantGate({ children }: Props) {
   const { t } = useTranslation()
+  const config = useConfig()
   const [state, setState] = useState<GateState>(() => {
-    if (pb.authStore.isValid) return { status: 'approved' }
-    const saved = localStorage.getItem('participantUsername')
-    return saved ? { status: 'loading' } : { status: 'form' }
+    if (pb.authStore.isValid) return 'approved'
+    return localStorage.getItem('sessionConnected') ? 'approved' : 'form'
   })
   const [input, setInput] = useState('')
   const [error, setError] = useState('')
-  const initialCheckDone = useRef(false)
-  const pendingUsername = state.status === 'pending' ? state.username : null
 
-  useEffect(() => {
-    return pb.authStore.onChange(() => {
-      if (pb.authStore.isValid) setState({ status: 'approved' })
-    })
-  }, [])
-
-  useEffect(() => {
-    if (initialCheckDone.current) return
-    initialCheckDone.current = true
-
-    if (pb.authStore.isValid) return
-
-    const saved = localStorage.getItem('participantUsername')
-    if (!saved) return
-
-    findParticipantByUsername(saved).then((participant) => {
-      if (!participant) {
-        localStorage.removeItem('participantUsername')
-        setState({ status: 'form' })
-      } else if (participant.validated) {
-        setState({ status: 'approved' })
-      } else {
-        setState({ status: 'pending', username: saved })
-      }
-    })
-  }, [])
-
-  useEffect(() => {
-    if (!pendingUsername) return
-
-    let unsub: (() => void) | undefined
-    let unmounted = false
-
-    pb.collection('participants').subscribe('*', () => {
-      findParticipantByUsername(pendingUsername).then((p) => {
-        if (p?.validated) setState({ status: 'approved' })
-      })
-    }).then((fn) => {
-      if (unmounted) fn()
-      else unsub = fn
-    })
-
-    return () => {
-      unmounted = true
-      unsub?.()
-    }
-  }, [pendingUsername])
-
-  const handleLogout = () => {
-    localStorage.removeItem('participantUsername')
-    setInput('')
-    setError('')
-    initialCheckDone.current = false
-    setState({ status: 'form' })
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const username = input.trim()
-    if (!username) return
-
-    setError('')
-
-    const existing = await findParticipantByUsername(username)
-    if (existing) {
-      localStorage.setItem('participantUsername', username)
-      if (existing.validated) {
-        setState({ status: 'approved' })
-      } else {
-        setState({ status: 'pending', username })
-        setError(t('gate.alreadyPending'))
-      }
-      return
-    }
-
-    await registerParticipant(username)
-    localStorage.setItem('participantUsername', username)
-    setState({ status: 'pending', username })
-  }
-
-  if (state.status === 'loading') {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh] text-slate-gray text-sm">
-        {t('live.loading')}
-      </div>
-    )
-  }
-
-  if (state.status === 'approved') {
+  if (state === 'approved') {
     return <>{children}</>
   }
 
-  if (state.status === 'pending') {
-    return (
-      <div className="min-h-[60vh] flex items-center justify-center px-4">
-        <div className="bg-white rounded-2xl p-8 w-full max-w-sm shadow-lg shadow-prussian/10 border border-surface-dark/50 text-center">
-          <div className="w-12 h-12 rounded-xl bg-card-orange/10 flex items-center justify-center mx-auto mb-5">
-            <svg className="w-6 h-6 text-card-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          </div>
-          <h2 className="font-display text-xl font-bold text-prussian mb-3">{t('gate.pendingTitle')}</h2>
-          <p className="text-sm text-slate-gray mb-2">{t('gate.pendingMessage')}</p>
-          <p className="text-xs text-slate-gray/60 font-mono bg-surface rounded-lg px-3 py-2 mb-5">{state.username}</p>
-          <button type="button" onClick={handleLogout} className="text-xs text-slate-gray/50 hover:text-card-red transition-colors underline underline-offset-2">
-            {t('gate.switchUser')}
-          </button>
-        </div>
-      </div>
-    )
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    const code = input.trim()
+    if (!code) return
+
+    if (config && code === config.session_id) {
+      localStorage.setItem('sessionConnected', 'true')
+      window.dispatchEvent(new Event('sessionChanged'))
+      setState('approved')
+      setError('')
+    } else {
+      setError(t('gate.invalidCode'))
+    }
   }
 
   return (
@@ -147,7 +50,7 @@ export default function ParticipantGate({ children }: Props) {
           <h2 className="font-display text-xl font-bold text-prussian">{t('gate.title')}</h2>
         </div>
         {error && (
-          <div className="bg-card-orange/10 border border-card-orange/20 text-card-orange text-sm rounded-xl px-4 py-3 mb-5">
+          <div className="bg-card-red/10 border border-card-red/20 text-card-red text-sm rounded-xl px-4 py-3 mb-5">
             {error}
           </div>
         )}

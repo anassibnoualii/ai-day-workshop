@@ -3,12 +3,12 @@ import Card from '../shared/Card'
 
 const rows = [
   { key: 'teamName', pts: '+2' },
-  { key: 'greenCard', pts: '+1' },
-  { key: 'orangeCard', pts: '+3' },
-  { key: 'redCard', pts: '+5' },
-  { key: 'jokerAction', pts: '+2 / -2' },
-  { key: 'speedRunAction', pts: '+2' },
-  { key: 'pitchAction', pts: '+3' },
+  { key: 'flagGreenScore', pts: '+5' },
+  { key: 'flagOrangeScore', pts: '+3' },
+  { key: 'flagRedScore', pts: '+1' },
+  { key: 'challengeCard', pts: '+3' },
+  { key: 'finalMission', pts: '+5' },
+  { key: 'publicVote', pts: '+5' },
   { key: 'bestDemo', pts: '+3' },
 ]
 

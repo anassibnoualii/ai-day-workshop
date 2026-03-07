@@ -33,16 +33,16 @@ export default function GamificationPreview() {
             <h3 className="font-bold text-sushi mb-4 text-xs uppercase tracking-[0.15em]">{t('gamification.cards')}</h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-3">
-                <span className="w-5 h-5 rounded-md bg-card-red shadow-sm shadow-card-red/30" />
-                <span className="text-sm text-white/70">{t('gamification.card_red')}</span>
-              </li>
-              <li className="flex items-center gap-3">
                 <span className="w-5 h-5 rounded-md bg-card-orange shadow-sm shadow-card-orange/30" />
-                <span className="text-sm text-white/70">{t('gamification.card_orange')}</span>
+                <span className="text-sm text-white/70">{t('gamification.card_challenge')}</span>
               </li>
               <li className="flex items-center gap-3">
-                <span className="w-5 h-5 rounded-md bg-card-green shadow-sm shadow-card-green/30" />
-                <span className="text-sm text-white/70">{t('gamification.card_green')}</span>
+                <span className="w-5 h-5 rounded-md bg-sushi shadow-sm shadow-sushi/30" />
+                <span className="text-sm text-white/70">{t('gamification.card_mission')}</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="w-5 h-5 rounded-md bg-card-purple shadow-sm shadow-card-purple/30" />
+                <span className="text-sm text-white/70">{t('gamification.card_vote')}</span>
               </li>
             </ul>
           </div>

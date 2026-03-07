@@ -53,6 +53,7 @@ export interface Config {
   feedback_url: string
   feedback_enabled: boolean
   global_docs: GlobalDoc[]
+  session_id: string
 }
 
 export interface ScoreHistory {
@@ -60,13 +61,6 @@ export interface ScoreHistory {
   team_id: string
   delta: number
   label: string
-  created: string
-}
-
-export interface Participant {
-  id: string
-  username: string
-  validated: boolean
   created: string
 }
 
